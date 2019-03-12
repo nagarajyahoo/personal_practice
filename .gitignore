@@ -25,3 +25,10 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
+
+### frontend ####
+/frontend/node_modules
+/frontend/build
+/frontend/frontend
+/frontend/node
+/frontend/package-lock.json
