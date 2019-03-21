@@ -7,7 +7,6 @@
         <module>api</module>
         <module>dao</module>
         <module>security</module>
-        <module>frontend</module>
         <module>database</module>
     </modules>
     <parent>
