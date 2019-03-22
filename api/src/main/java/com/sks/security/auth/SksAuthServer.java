@@ -44,7 +44,7 @@ public class SksAuthServer extends AuthorizationServerConfigurerAdapter {
         //@formatter:off
         clients.inMemory()
                 .withClient("live-test")
-                .secret("{noop}bGl2ZS10ZXN0")
+                .secret("$2a$10$N7fPZJG91TqXMVuRuo66QOgThCdelx4lMfPmWE55e4iOOuNFq8rFy")
                 .authorities("ROLE_TRUSTED_CLIENT")
                 .authorizedGrantTypes("password", "authorization_code")
                 .redirectUris("http://localhost:8080/token", "http://localhost:3000/receiver/token")

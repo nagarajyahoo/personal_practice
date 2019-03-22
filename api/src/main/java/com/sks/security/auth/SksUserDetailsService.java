@@ -5,6 +5,7 @@ import com.sks.dao.beans.UsersDB;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -13,10 +14,13 @@ import javax.inject.Inject;
 @Service
 public class SksUserDetailsService implements UserDetailsService {
     private final UsersDao usersDao;
+    private final PasswordEncoder passwordEncoder;
 
     @Inject
-    public SksUserDetailsService(final UsersDao usersDao) {
+    public SksUserDetailsService(final UsersDao usersDao,
+                                 final PasswordEncoder passwordEncoder) {
         this.usersDao = usersDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
