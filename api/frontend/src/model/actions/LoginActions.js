@@ -1,5 +1,3 @@
-import axios from '../../interceptors/axios';
-
 export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const PROCESSING = 'PROCESSING';
@@ -24,15 +22,5 @@ export const login = (userId, password) => {
 
     return (dispatch => {
         dispatch(processing());
-
-        axios.post('/login', loginRequest)
-            .then(res => {
-                console.log(res);
-                dispatch(loginSuccessful(res.data))
-            })
-            .catch(error => {
-                console.log(error);
-                dispatch(loginFailure(error.message))
-            })
     });
 };

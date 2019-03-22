@@ -14,12 +14,20 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @Configuration
 @EnableWebSecurity
 public class SksSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        AuthenticationManager authenticationManager = super.authenticationManagerBean();
+        return authenticationManager;
+    }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         //@formatter:off
         http.authorizeRequests()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/public/**").permitAll()
+                .antMatchers("/oauth/**").permitAll()
                 .and().anonymous();
         //@formatter:on
     }
