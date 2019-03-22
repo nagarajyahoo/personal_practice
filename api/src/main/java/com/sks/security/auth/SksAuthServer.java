@@ -1,5 +1,6 @@
 package com.sks.security.auth;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -22,6 +23,14 @@ import javax.inject.Inject;
 @Configuration
 @EnableAuthorizationServer
 public class SksAuthServer extends AuthorizationServerConfigurerAdapter {
+    @Value("${sks.web.client.id}")
+    private String clientId;
+    @Value("${sks.web.client.secret}")
+    private String clientSecret;
+    @Value("${sks.web.client.redirect.uri}")
+    private String clientRedirectUri;
+    @Value("${sks.web.client.token.timeout}")
+    private int clientTokenTimeout;
     private final AuthenticationManager authenticationManager;
     private final SksUserDetailsService userDetailsService;
 
@@ -43,14 +52,14 @@ public class SksAuthServer extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //@formatter:off
         clients.inMemory()
-                .withClient("live-test")
-                .secret("$2a$10$N7fPZJG91TqXMVuRuo66QOgThCdelx4lMfPmWE55e4iOOuNFq8rFy")
+                .withClient(clientId)
+                .secret(clientSecret)
                 .authorities("ROLE_TRUSTED_CLIENT")
                 .authorizedGrantTypes("password", "authorization_code")
-                .redirectUris("http://localhost:8080/token", "http://localhost:3000/receiver/token")
+                .redirectUris(clientRedirectUri)
                 .scopes("read", "write")
                 .autoApprove("read", "write")
-                .accessTokenValiditySeconds(3600);
+                .accessTokenValiditySeconds(clientTokenTimeout);
         //@formatter:on
     }
 
