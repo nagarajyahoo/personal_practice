@@ -23,16 +23,19 @@ import javax.inject.Inject;
 @EnableAuthorizationServer
 public class SksAuthServer extends AuthorizationServerConfigurerAdapter {
     private final AuthenticationManager authenticationManager;
+    private final SksUserDetailsService userDetailsService;
 
     @Inject
-    public SksAuthServer(AuthenticationManager authenticationManager) {
+    public SksAuthServer(final AuthenticationManager authenticationManager,
+                         final SksUserDetailsService userDetailsService) {
         this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(new MyAppUserDetailsService());
+        authProvider.setUserDetailsService(userDetailsService);
         return authProvider;
     }
 
@@ -48,7 +51,6 @@ public class SksAuthServer extends AuthorizationServerConfigurerAdapter {
                 .scopes("read", "write")
                 .autoApprove("read", "write")
                 .accessTokenValiditySeconds(3600);
-        ;
         //@formatter:on
     }
 
