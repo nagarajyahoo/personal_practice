@@ -1,4 +1,4 @@
-package com.sks.api.security.auth;
+package com.sks.security.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

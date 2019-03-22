@@ -1,4 +1,4 @@
-package com.sks.api.security.auth;
+package com.sks.security.auth;
 
 import com.sks.dao.UsersDao;
 import com.sks.dao.beans.UsersDB;

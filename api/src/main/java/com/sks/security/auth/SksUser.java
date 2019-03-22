@@ -1,4 +1,4 @@
-package com.sks.api.security.auth;
+package com.sks.security.auth;
 
 import com.sks.dao.beans.UsersDB;
 import org.springframework.security.core.GrantedAuthority;
