@@ -29,7 +29,6 @@ public class UserConverter {
         UserReqRes user = new UserReqRes();
         user.setId(databaseUser.getId());
         user.setEmail(databaseUser.getEmail());
-        user.setPassword(databaseUser.getPassword());
         return user;
     }
 }
