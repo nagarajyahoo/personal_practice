@@ -1,11 +1,11 @@
-package com.sks.api.controller.model;
+package com.sks.api.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User {
+public class UserReqRes {
     private Integer id;
     private String email;
     private String password;

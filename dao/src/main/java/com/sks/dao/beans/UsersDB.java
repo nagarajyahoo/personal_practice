@@ -1,11 +1,16 @@
 package com.sks.dao.beans;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "sksmain", catalog = "")
+@DynamicInsert
+@DynamicUpdate
 public class UsersDB {
     private int id;
     private String email;

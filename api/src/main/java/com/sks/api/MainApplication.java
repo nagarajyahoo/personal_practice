@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.sks.dao",
-        "com.sks.api"
+        "com.sks.api",
+        "com.sks.security"
 })
 @EntityScan(basePackages = {
         "com.sks.dao"
