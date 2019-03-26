@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
+
+../api/frontend/package-lock.json
+../../dao/src/main/resources/hibernate.cfg.xml
+../DS_Store
+
