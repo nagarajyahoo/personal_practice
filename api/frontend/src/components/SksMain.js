@@ -9,29 +9,36 @@ export default class SksMain extends React.Component {
     render() {
         return (
             <div>
-                <section>
-                    <Navbar className={'sks-navbar'}>
-                        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav">
-                            <Nav className="justify-content-lg-end">
-                                <Nav.Link href="#features">Features</Nav.Link>
-                                <Nav.Link href="#pricing">Pricing</Nav.Link>
-                                <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                </NavDropdown>
-                                <Nav.Link href="#deets">More deets</Nav.Link>
-                                <Nav.Link eventKey={2} href="#memes">
-                                    Dank memes
-                                </Nav.Link>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Navbar>;
-                </section>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-info static-top">
+                    <div className="container">
+                        <a className="navbar-brand" href="#">
+                            <img src="favicon.ico" alt="" className={'rounded-circle'}/>
+                        </a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarResponsive">
+                            <ul className="navbar-nav ml-auto">
+                                <li className="nav-item active">
+                                    <a className="nav-link" href="#">Home
+                                        <span className="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">About</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">Services</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
                 <section>
                     <Switch>
                         <Route path='/hello' component={Hello}/>
