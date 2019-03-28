@@ -1,6 +1,6 @@
 package com.sks.api.util.converter;
 
-import com.sks.api.model.UserReqRes;
+import com.sks.api.model.UsersDetail;
 import com.sks.dao.beans.UsersDB;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +17,7 @@ public class UserConverter {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UsersDB convertToDatabaseUser(UserReqRes user) {
+    public UsersDB convertToDatabaseUser(UsersDetail user) {
         UsersDB databaseUser = new UsersDB();
         databaseUser.setEmail(user.getEmail());
         databaseUser.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -25,8 +25,8 @@ public class UserConverter {
         return databaseUser;
     }
 
-    public UserReqRes convertToJsonUser(UsersDB databaseUser) {
-        UserReqRes user = new UserReqRes();
+    public UsersDetail convertToJsonUser(UsersDB databaseUser) {
+        UsersDetail user = new UsersDetail();
         user.setId(databaseUser.getId());
         user.setEmail(databaseUser.getEmail());
         return user;

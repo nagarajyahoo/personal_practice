@@ -1,8 +1,8 @@
 package com.sks.api.service;
 
 
-import com.sks.api.model.UserReqRes;
+import com.sks.api.model.UsersDetail;
 
 public interface UsersService {
-    UserReqRes addUser(UserReqRes user);
+    UsersDetail addUser(UsersDetail user);
 }

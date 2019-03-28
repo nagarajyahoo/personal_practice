@@ -1,6 +1,6 @@
 package com.sks.api.controller;
 
-import com.sks.api.model.UserReqRes;
+import com.sks.api.model.UsersDetail;
 import com.sks.api.service.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ public class RegisterController {
 
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResponseEntity addUser(@RequestBody UserReqRes user) {
+    public ResponseEntity addUser(@RequestBody UsersDetail user) {
         return ResponseEntity.ok(usersService.addUser(user));
     }
 }

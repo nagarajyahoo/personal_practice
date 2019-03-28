@@ -1,6 +1,6 @@
 package com.sks.api.service;
 
-import com.sks.api.model.UserReqRes;
+import com.sks.api.model.UsersDetail;
 import com.sks.api.util.converter.UserConverter;
 import com.sks.dao.UsersDao;
 import com.sks.dao.beans.UsersDB;
@@ -18,7 +18,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UserReqRes addUser(final UserReqRes user) {
+    public UsersDetail addUser(final UsersDetail user) {
         UsersDB databaseUser = userConverter.convertToDatabaseUser(user);
         UsersDB savedUser = usersDao.save(databaseUser);
         return userConverter.convertToJsonUser(savedUser);
