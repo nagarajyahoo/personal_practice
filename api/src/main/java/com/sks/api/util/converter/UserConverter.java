@@ -1,6 +1,7 @@
 package com.sks.api.util.converter;
 
 import com.sks.api.model.UsersDetail;
+import com.sks.dao.beans.UserDetailsDB;
 import com.sks.dao.beans.UsersDB;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,18 +18,27 @@ public class UserConverter {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UsersDB convertToDatabaseUser(UsersDetail user) {
-        UsersDB databaseUser = new UsersDB();
-        databaseUser.setEmail(user.getEmail());
-        databaseUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        databaseUser.setLocked((byte) 0);
-        return databaseUser;
+    public UsersDB convertToDBUser(UsersDetail user) {
+        UsersDB dbUser = new UsersDB();
+        dbUser.setEmail(user.getEmail());
+        dbUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        dbUser.setLocked((byte) 0);
+        dbUser.setUserDetails(convertToDBUserDetails(user));
+        return dbUser;
     }
 
-    public UsersDetail convertToJsonUser(UsersDB databaseUser) {
+    private UserDetailsDB convertToDBUserDetails(UsersDetail user) {
+        UserDetailsDB dbUserDetail = new UserDetailsDB();
+        dbUserDetail.setPhone(user.getPhone());
+        dbUserDetail.setFirstName(user.getFirstName());
+        dbUserDetail.setLastName(user.getLastName());
+        return dbUserDetail;
+    }
+
+    public UsersDetail convertToJsonUser(UsersDB dbUser) {
         UsersDetail user = new UsersDetail();
-        user.setId(databaseUser.getId());
-        user.setEmail(databaseUser.getEmail());
+        user.setId(dbUser.getId());
+        user.setEmail(dbUser.getEmail());
         return user;
     }
 }

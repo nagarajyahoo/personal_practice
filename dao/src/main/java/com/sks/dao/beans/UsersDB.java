@@ -18,6 +18,7 @@ public class UsersDB {
     private Timestamp createTime;
     private Timestamp updateTime;
     private byte locked;
+    private UserDetailsDB userDetails;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,6 +79,15 @@ public class UsersDB {
 
     public void setLocked(byte locked) {
         this.locked = locked;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public UserDetailsDB getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetailsDB userDetails) {
+        this.userDetails = userDetails;
     }
 
     @Override

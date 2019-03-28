@@ -19,7 +19,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersDetail addUser(final UsersDetail user) {
-        UsersDB databaseUser = userConverter.convertToDatabaseUser(user);
+        UsersDB databaseUser = userConverter.convertToDBUser(user);
         UsersDB savedUser = usersDao.save(databaseUser);
         return userConverter.convertToJsonUser(savedUser);
     }
