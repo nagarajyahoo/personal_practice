@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS sksmain.users (
   id INT NOT NULL AUTO_INCREMENT,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
+  locked TINYINT NOT NULL DEFAULT 0,
   create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   update_time TIMESTAMP NULL,
   PRIMARY KEY (id))
@@ -100,6 +101,74 @@ CREATE TABLE IF NOT EXISTS sksmain.user_details (
   update_time TIMESTAMP NULL,
   PRIMARY KEY (users_id),
   CONSTRAINT fk_user_details_users1
+    FOREIGN KEY (users_id)
+    REFERENCES sksmain.users (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table sksmain.events
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS sksmain.events (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  event_date TIMESTAMP NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table sksmain.events_users
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS sksmain.events_users (
+  users_id INT NOT NULL,
+  events_id INT NOT NULL,
+  paid TINYINT NOT NULL DEFAULT 0,
+  status ENUM('REGISTER', 'CANCEL', 'REFUND') NOT NULL DEFAULT 'REGISTER',
+  PRIMARY KEY (users_id, events_id),
+  INDEX fk_events_users_events1_idx (events_id ASC) VISIBLE,
+  CONSTRAINT fk_events_users_users1
+    FOREIGN KEY (users_id)
+    REFERENCES sksmain.users (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_events_users_events1
+    FOREIGN KEY (events_id)
+    REFERENCES sksmain.events (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table sksmain.achievements
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS sksmain.achievements (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  achievement_count INT NOT NULL DEFAULT 0,
+  create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table sksmain.committee
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS sksmain.committee (
+  users_id INT NOT NULL,
+  description TEXT NOT NULL,
+  create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP NULL,
+  PRIMARY KEY (users_id),
+  CONSTRAINT fk_committee_users1
     FOREIGN KEY (users_id)
     REFERENCES sksmain.users (id)
     ON DELETE NO ACTION
