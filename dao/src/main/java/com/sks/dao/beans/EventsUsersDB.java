@@ -10,7 +10,7 @@ public class EventsUsersDB {
     private int usersId;
     private int eventsId;
     private byte paid;
-    private Object status;
+    private String status;
 
     @Id
     @Column(name = "users_id", nullable = false)
@@ -44,11 +44,11 @@ public class EventsUsersDB {
 
     @Basic
     @Column(name = "status", nullable = false)
-    public Object getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Object status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
