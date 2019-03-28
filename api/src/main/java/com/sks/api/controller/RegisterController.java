@@ -1,4 +1,4 @@
-package com.sks.api.controller.secure;
+package com.sks.api.controller;
 
 import com.sks.api.model.UserReqRes;
 import com.sks.api.service.UsersService;
@@ -14,11 +14,11 @@ import javax.ws.rs.core.MediaType;
 
 @RestController
 @RequestMapping("/register")
-public class UserController {
+public class RegisterController {
     private final UsersService usersService;
 
     @Inject
-    public UserController(UsersService usersService) {
+    public RegisterController(UsersService usersService) {
         this.usersService = usersService;
     }
 
