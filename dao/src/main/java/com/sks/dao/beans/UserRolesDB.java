@@ -7,18 +7,8 @@ import java.util.Objects;
 @Table(name = "user_roles", schema = "sksmain", catalog = "")
 @IdClass(UserRolesDBPK.class)
 public class UserRolesDB {
-    private int usersId;
     private int rolesId;
-
-    @Id
-    @Column(name = "users_id", nullable = false)
-    public int getUsersId() {
-        return usersId;
-    }
-
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+    private int sksUsersId;
 
     @Id
     @Column(name = "roles_id", nullable = false)
@@ -30,17 +20,27 @@ public class UserRolesDB {
         this.rolesId = rolesId;
     }
 
+    @Id
+    @Column(name = "sks_users_id", nullable = false)
+    public int getSksUsersId() {
+        return sksUsersId;
+    }
+
+    public void setSksUsersId(int sksUsersId) {
+        this.sksUsersId = sksUsersId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRolesDB that = (UserRolesDB) o;
-        return usersId == that.usersId &&
-                rolesId == that.rolesId;
+        return rolesId == that.rolesId &&
+                sksUsersId == that.sksUsersId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usersId, rolesId);
+        return Objects.hash(rolesId, sksUsersId);
     }
 }

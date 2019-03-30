@@ -9,25 +9,16 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_details", schema = "sksmain", catalog = "")
-@DynamicUpdate
 @DynamicInsert
+@DynamicUpdate
 public class UserDetailsDB {
-    private int usersId;
     private String phone;
     private String firstName;
     private String lastName;
     private Timestamp createTime;
     private Timestamp updateTime;
-
-    @Id
-    @Column(name = "users_id", nullable = false)
-    public int getUsersId() {
-        return usersId;
-    }
-
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+    private int sksUsersId;
+    private SksUsersDB sksUser;
 
     @Basic
     @Column(name = "phone", nullable = false, length = 45)
@@ -79,12 +70,33 @@ public class UserDetailsDB {
         this.updateTime = updateTime;
     }
 
+    @Id
+    @Column(name = "sks_users_id", nullable = false)
+    public int getSksUsersId() {
+        return sksUsersId;
+    }
+
+    public void setSksUsersId(int sksUsersId) {
+        this.sksUsersId = sksUsersId;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "sks_users_id")
+    @MapsId
+    public SksUsersDB getSksUser() {
+        return sksUser;
+    }
+
+    public void setSksUser(SksUsersDB sksUser) {
+        this.sksUser = sksUser;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDetailsDB that = (UserDetailsDB) o;
-        return usersId == that.usersId &&
+        return sksUsersId == that.sksUsersId &&
                 Objects.equals(phone, that.phone) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
@@ -94,6 +106,6 @@ public class UserDetailsDB {
 
     @Override
     public int hashCode() {
-        return Objects.hash(usersId, phone, firstName, lastName, createTime, updateTime);
+        return Objects.hash(phone, firstName, lastName, createTime, updateTime, sksUsersId);
     }
 }

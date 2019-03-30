@@ -7,27 +7,27 @@ import java.util.Objects;
 @Table(name = "role_permissions", schema = "sksmain", catalog = "")
 @IdClass(RolePermissionsDBPK.class)
 public class RolePermissionsDB {
-    private int rolesId;
-    private int permissionsId;
+    private int sksRolesId;
+    private int sksPermissionsId;
 
     @Id
-    @Column(name = "roles_id", nullable = false)
-    public int getRolesId() {
-        return rolesId;
+    @Column(name = "sks_roles_id", nullable = false)
+    public int getSksRolesId() {
+        return sksRolesId;
     }
 
-    public void setRolesId(int rolesId) {
-        this.rolesId = rolesId;
+    public void setSksRolesId(int sksRolesId) {
+        this.sksRolesId = sksRolesId;
     }
 
     @Id
-    @Column(name = "permissions_id", nullable = false)
-    public int getPermissionsId() {
-        return permissionsId;
+    @Column(name = "sks_permissions_id", nullable = false)
+    public int getSksPermissionsId() {
+        return sksPermissionsId;
     }
 
-    public void setPermissionsId(int permissionsId) {
-        this.permissionsId = permissionsId;
+    public void setSksPermissionsId(int sksPermissionsId) {
+        this.sksPermissionsId = sksPermissionsId;
     }
 
     @Override
@@ -35,12 +35,12 @@ public class RolePermissionsDB {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RolePermissionsDB that = (RolePermissionsDB) o;
-        return rolesId == that.rolesId &&
-                permissionsId == that.permissionsId;
+        return sksRolesId == that.sksRolesId &&
+                sksPermissionsId == that.sksPermissionsId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rolesId, permissionsId);
+        return Objects.hash(sksRolesId, sksPermissionsId);
     }
 }

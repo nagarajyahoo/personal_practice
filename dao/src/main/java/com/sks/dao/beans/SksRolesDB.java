@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "roles", schema = "sksmain", catalog = "")
-public class RolesDB {
+@Table(name = "sks_roles", schema = "sksmain", catalog = "")
+public class SksRolesDB {
     private int id;
     private String role;
     private Timestamp createTime;
@@ -56,11 +56,11 @@ public class RolesDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RolesDB rolesDB = (RolesDB) o;
-        return id == rolesDB.id &&
-                Objects.equals(role, rolesDB.role) &&
-                Objects.equals(createTime, rolesDB.createTime) &&
-                Objects.equals(updateTime, rolesDB.updateTime);
+        SksRolesDB that = (SksRolesDB) o;
+        return id == that.id &&
+                Objects.equals(role, that.role) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(updateTime, that.updateTime);
     }
 
     @Override

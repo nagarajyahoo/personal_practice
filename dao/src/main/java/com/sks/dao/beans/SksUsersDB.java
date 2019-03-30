@@ -4,25 +4,26 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.net.ServerSocket;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users", schema = "sksmain", catalog = "")
+@Table(name = "sks_users", schema = "sksmain", catalog = "")
 @DynamicInsert
 @DynamicUpdate
-public class UsersDB {
+public class SksUsersDB {
     private int id;
     private String email;
     private String password;
+    private byte locked;
     private Timestamp createTime;
     private Timestamp updateTime;
-    private byte locked;
     private UserDetailsDB userDetails;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -52,6 +53,16 @@ public class UsersDB {
     }
 
     @Basic
+    @Column(name = "locked", nullable = false)
+    public byte getLocked() {
+        return locked;
+    }
+
+    public void setLocked(byte locked) {
+        this.locked = locked;
+    }
+
+    @Basic
     @Column(name = "create_time", nullable = false)
     public Timestamp getCreateTime() {
         return createTime;
@@ -71,17 +82,7 @@ public class UsersDB {
         this.updateTime = updateTime;
     }
 
-    @Basic
-    @Column(name = "locked", nullable = false)
-    public byte getLocked() {
-        return locked;
-    }
-
-    public void setLocked(byte locked) {
-        this.locked = locked;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sksUser")
     public UserDetailsDB getUserDetails() {
         return userDetails;
     }
@@ -94,17 +95,17 @@ public class UsersDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UsersDB usersDB = (UsersDB) o;
-        return id == usersDB.id &&
-                locked == usersDB.locked &&
-                Objects.equals(email, usersDB.email) &&
-                Objects.equals(password, usersDB.password) &&
-                Objects.equals(createTime, usersDB.createTime) &&
-                Objects.equals(updateTime, usersDB.updateTime);
+        SksUsersDB that = (SksUsersDB) o;
+        return id == that.id &&
+                locked == that.locked &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(updateTime, that.updateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, createTime, updateTime, locked);
+        return Objects.hash(id, email, password, locked, createTime, updateTime);
     }
 }

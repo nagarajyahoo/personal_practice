@@ -1,6 +1,6 @@
 package com.sks.security.auth;
 
-import com.sks.dao.beans.UsersDB;
+import com.sks.dao.beans.SksUsersDB;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -61,7 +61,7 @@ public class SksUser implements UserDetails {
         private String password;
         private boolean locked;
 
-        public Builder(UsersDB databaseUser) {
+        public Builder(SksUsersDB databaseUser) {
             this.username = databaseUser.getEmail();
             this.password = databaseUser.getPassword();
             this.locked = databaseUser.getLocked() == 1;

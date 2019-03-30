@@ -1,7 +1,7 @@
 package com.sks.security.auth;
 
 import com.sks.dao.UsersDao;
-import com.sks.dao.beans.UsersDB;
+import com.sks.dao.beans.SksUsersDB;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,7 +33,7 @@ public class SksUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails getUserDetails(String username) {
-        UsersDB databaseUser = usersDao.findByEmail(username);
+        SksUsersDB databaseUser = usersDao.findByEmail(username);
         return new SksUser
                 .Builder(databaseUser)
                 .build();

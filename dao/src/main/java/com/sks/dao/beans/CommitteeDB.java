@@ -7,20 +7,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "committee", schema = "sksmain", catalog = "")
 public class CommitteeDB {
-    private int usersId;
     private String description;
     private Timestamp createTime;
     private Timestamp updateTime;
-
-    @Id
-    @Column(name = "users_id", nullable = false)
-    public int getUsersId() {
-        return usersId;
-    }
-
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+    private int sksUsersId;
 
     @Basic
     @Column(name = "description", nullable = false, length = -1)
@@ -52,12 +42,22 @@ public class CommitteeDB {
         this.updateTime = updateTime;
     }
 
+    @Id
+    @Column(name = "sks_users_id", nullable = false)
+    public int getSksUsersId() {
+        return sksUsersId;
+    }
+
+    public void setSksUsersId(int sksUsersId) {
+        this.sksUsersId = sksUsersId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CommitteeDB that = (CommitteeDB) o;
-        return usersId == that.usersId &&
+        return sksUsersId == that.sksUsersId &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(createTime, that.createTime) &&
                 Objects.equals(updateTime, that.updateTime);
@@ -65,6 +65,6 @@ public class CommitteeDB {
 
     @Override
     public int hashCode() {
-        return Objects.hash(usersId, description, createTime, updateTime);
+        return Objects.hash(description, createTime, updateTime, sksUsersId);
     }
 }

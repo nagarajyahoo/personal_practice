@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "permissions", schema = "sksmain", catalog = "")
-public class PermissionsDB {
+@Table(name = "sks_permissions", schema = "sksmain", catalog = "")
+public class SksPermissionsDB {
     private int id;
     private String permission;
     private Timestamp createTime;
@@ -56,7 +56,7 @@ public class PermissionsDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PermissionsDB that = (PermissionsDB) o;
+        SksPermissionsDB that = (SksPermissionsDB) o;
         return id == that.id &&
                 Objects.equals(permission, that.permission) &&
                 Objects.equals(createTime, that.createTime) &&

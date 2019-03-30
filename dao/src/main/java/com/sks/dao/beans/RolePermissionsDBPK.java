@@ -6,27 +6,27 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class RolePermissionsDBPK implements Serializable {
-    private int rolesId;
-    private int permissionsId;
+    private int sksRolesId;
+    private int sksPermissionsId;
 
-    @Column(name = "roles_id", nullable = false)
+    @Column(name = "sks_roles_id", nullable = false)
     @Id
-    public int getRolesId() {
-        return rolesId;
+    public int getSksRolesId() {
+        return sksRolesId;
     }
 
-    public void setRolesId(int rolesId) {
-        this.rolesId = rolesId;
+    public void setSksRolesId(int sksRolesId) {
+        this.sksRolesId = sksRolesId;
     }
 
-    @Column(name = "permissions_id", nullable = false)
+    @Column(name = "sks_permissions_id", nullable = false)
     @Id
-    public int getPermissionsId() {
-        return permissionsId;
+    public int getSksPermissionsId() {
+        return sksPermissionsId;
     }
 
-    public void setPermissionsId(int permissionsId) {
-        this.permissionsId = permissionsId;
+    public void setSksPermissionsId(int sksPermissionsId) {
+        this.sksPermissionsId = sksPermissionsId;
     }
 
     @Override
@@ -34,12 +34,12 @@ public class RolePermissionsDBPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RolePermissionsDBPK that = (RolePermissionsDBPK) o;
-        return rolesId == that.rolesId &&
-                permissionsId == that.permissionsId;
+        return sksRolesId == that.sksRolesId &&
+                sksPermissionsId == that.sksPermissionsId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rolesId, permissionsId);
+        return Objects.hash(sksRolesId, sksPermissionsId);
     }
 }

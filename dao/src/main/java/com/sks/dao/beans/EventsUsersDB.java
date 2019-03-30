@@ -7,20 +7,10 @@ import java.util.Objects;
 @Table(name = "events_users", schema = "sksmain", catalog = "")
 @IdClass(EventsUsersDBPK.class)
 public class EventsUsersDB {
-    private int usersId;
     private int eventsId;
     private byte paid;
     private String status;
-
-    @Id
-    @Column(name = "users_id", nullable = false)
-    public int getUsersId() {
-        return usersId;
-    }
-
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+    private int sksUsersId;
 
     @Id
     @Column(name = "events_id", nullable = false)
@@ -52,19 +42,29 @@ public class EventsUsersDB {
         this.status = status;
     }
 
+    @Id
+    @Column(name = "sks_users_id", nullable = false)
+    public int getSksUsersId() {
+        return sksUsersId;
+    }
+
+    public void setSksUsersId(int sksUsersId) {
+        this.sksUsersId = sksUsersId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventsUsersDB that = (EventsUsersDB) o;
-        return usersId == that.usersId &&
-                eventsId == that.eventsId &&
+        return eventsId == that.eventsId &&
                 paid == that.paid &&
+                sksUsersId == that.sksUsersId &&
                 Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usersId, eventsId, paid, status);
+        return Objects.hash(eventsId, paid, status, sksUsersId);
     }
 }

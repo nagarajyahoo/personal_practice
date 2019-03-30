@@ -6,18 +6,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class EventsUsersDBPK implements Serializable {
-    private int usersId;
     private int eventsId;
-
-    @Column(name = "users_id", nullable = false)
-    @Id
-    public int getUsersId() {
-        return usersId;
-    }
-
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+    private int sksUsersId;
 
     @Column(name = "events_id", nullable = false)
     @Id
@@ -29,17 +19,27 @@ public class EventsUsersDBPK implements Serializable {
         this.eventsId = eventsId;
     }
 
+    @Column(name = "sks_users_id", nullable = false)
+    @Id
+    public int getSksUsersId() {
+        return sksUsersId;
+    }
+
+    public void setSksUsersId(int sksUsersId) {
+        this.sksUsersId = sksUsersId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventsUsersDBPK that = (EventsUsersDBPK) o;
-        return usersId == that.usersId &&
-                eventsId == that.eventsId;
+        return eventsId == that.eventsId &&
+                sksUsersId == that.sksUsersId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usersId, eventsId);
+        return Objects.hash(eventsId, sksUsersId);
     }
 }
