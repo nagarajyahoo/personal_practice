@@ -195,13 +195,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS sksmain.sks_album_photos (
   id INT NOT NULL AUTO_INCREMENT,
+  sks_album_id INT NOT NULL,
   photo_caption VARCHAR(45) NULL,
   description VARCHAR(45) NULL,
   phot_url VARCHAR(45) NULL,
   create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   update_time TIMESTAMP NULL,
-  sks_album_id INT NOT NULL,
-  PRIMARY KEY (id, sks_album_id),
+  PRIMARY KEY (id),
   INDEX fk_sks_album_photos_sks_album1_idx (sks_album_id ASC) VISIBLE,
   CONSTRAINT fk_sks_album_photos_sks_album1
     FOREIGN KEY (sks_album_id)
