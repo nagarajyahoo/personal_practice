@@ -8,8 +8,8 @@ body {
 }
 
 .sks-header {
-    background-color: #1c4127;
     height: 120px;
+    background-color: rgba(32, 77, 48, 0.65);
 }
 
 .sks-logo {

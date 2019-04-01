@@ -1,8 +1,7 @@
 import React from 'react';
-import Some from "./some/Some";
-import Hello from "./dummy/Hello";
 import {Route, Switch} from "react-router";
 import './SksMain.css';
+import SksHome from "./skshome/SksHome";
 
 export default class SksMain extends React.Component {
     render() {
@@ -14,7 +13,7 @@ export default class SksMain extends React.Component {
                             className="navbar-toggler"
                             data-toggle="collapse"
                             data-target="#navbarCollapse">
-                            <span className="navbar-toggler-icon"></span>
+                            <span className="navbar-toggler-icon" />
                         </button>
                         <div id="navbarCollapse" className="collapse navbar-collapse">
                             <ul className="navbar-nav mr-auto">
@@ -44,10 +43,7 @@ export default class SksMain extends React.Component {
                     </div>
                 </nav>
                 <section>
-                    <Switch>
-                        <Route path='/hello' component={Hello}/>
-                        <Route path='/some' component={Some}/>
-                    </Switch>
+                    <SksHome />
                 </section>
             </div>
         );

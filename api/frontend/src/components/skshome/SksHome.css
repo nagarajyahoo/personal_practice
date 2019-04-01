@@ -1,0 +1,11 @@
+.sks-home {
+    width: 100%;
+    background-color: lightgray;
+    align-self: center;
+}
+
+.carousel-div {
+    width: 90%;
+    align-self: center;
+    margin: auto;
+}
