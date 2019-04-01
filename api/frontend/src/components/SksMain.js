@@ -2,11 +2,13 @@ import React from 'react';
 import {Route, Switch} from "react-router";
 import './SksMain.css';
 import SksHome from "./skshome/SksHome";
+import Header from "./header/Header";
 
 export default class SksMain extends React.Component {
     render() {
         return (
             <div>
+                <Header />
                 <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
                     <div className="container">
                         <button
