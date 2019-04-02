@@ -9,7 +9,7 @@ export default class SksMain extends React.Component {
         return (
             <div>
                 <Header />
-                <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+                <nav className="navbar navbar-expand-sm navbar-dark fixed-top">
                     <div className="container">
                         <button
                             className="navbar-toggler"

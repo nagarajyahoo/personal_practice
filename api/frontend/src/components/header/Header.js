@@ -29,8 +29,8 @@ export default class Header extends React.Component {
                             <div className="container text-right">
                                 <div className="row d-flex">
                                     <div className="col">
-                                        <i className="fab fa-facebook-f"></i>&nbsp;&nbsp;
-                                        <i className="fab fa-youtube"></i>
+                                        <i className="fab fa-facebook-f fa-lg"></i>&nbsp;&nbsp;
+                                        <i className="fab fa-youtube-square fa-lg"></i>
                                     </div>
                                 </div>
                             </div>
