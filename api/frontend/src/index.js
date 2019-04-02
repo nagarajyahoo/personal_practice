@@ -7,11 +7,13 @@ import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import LoginReducer from "./model/reducers/LoginReducer";
+import AlbumReducer from "./model/reducers/AlbumReducer";
 import {withRouter} from "react-router";
 
 //create reducers
 const reducers = combineReducers({
-    login: LoginReducer
+    login: LoginReducer,
+    album: AlbumReducer
 });
 
 //create composers
