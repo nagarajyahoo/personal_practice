@@ -1,5 +1,7 @@
 import React from 'react';
 import * as actions from "../../model/actions/AlbumActions";
+import './PhotosCarousel.css';
+
 import {
     Carousel,
     CarouselItem,
@@ -58,7 +60,7 @@ class PhotosCarousel extends React.Component {
                     onExiting={this.onExiting}
                     onExited={this.onExited}
                     key={item.src}>
-                    <img src={item.url} alt={item.altText} width={'100%'} height={'600px'}/>
+                    <img src={item.url} alt={item.altText} className={'photos'}/>
                     <CarouselCaption captionText={item.title} captionHeader={item.description} />
                 </CarouselItem>
             );
