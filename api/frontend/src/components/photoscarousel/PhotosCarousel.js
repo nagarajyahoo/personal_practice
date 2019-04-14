@@ -48,7 +48,7 @@ class PhotosCarousel extends React.Component {
     }
 
     componentDidMount() {
-        this.props.carouselPhotos(1);
+        // this.props.carouselPhotos(1);
     }
 
     render() {

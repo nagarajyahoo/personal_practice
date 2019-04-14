@@ -3,13 +3,29 @@ import {Route, Switch} from "react-router";
 import './SksMain.css';
 import SksHome from "./skshome/SksHome";
 import Header from "./header/Header";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {aboutUs} from "./aboutus/AboutUs";
 import {gallery} from "./galleries/Gallery";
 import {contactUs} from "./contactus/ContactUs";
 import {events} from "./events/Events";
+import Login from "./login/Login";
 
 export default class SksMain extends React.Component {
+    constructor(context) {
+        super(context);
+        this.state = {
+            displaySignIn: false,
+            backdrop: true,
+        };
+        this.toggleSignIn = this.toggleSignIn.bind(this);
+    }
+
+    toggleSignIn(display) {
+        this.setState({
+            displaySignIn: display
+        });
+    }
+
     render() {
         return (
             <div className={'sksmain'}>
@@ -43,19 +59,19 @@ export default class SksMain extends React.Component {
                         </div>
                         <div className="sks-login">
                             <ul>
-                                <li><a href={'/register'}>Register</a> </li>
-                                <li><a href={'/login'}>Login</a> </li>
+                                <li><span onClick={this.toggleSignIn}>Register</span></li>
+                                <li><span onClick={() => this.toggleSignIn(true)}>Login</span></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
                 <section>
                     <Switch>
-                        <Route exact={'true'} path={'/home'} component={SksHome} />
-                        <Route exact={'true'} path={'/aboutus'} component={aboutUs} />
-                        <Route exact={'true'} path={'/gallery'} component={gallery} />
-                        <Route exact={'true'} path={'/events'} component={events} />
-                        <Route exact={'true'} path={'/contactus'} component={contactUs} />
+                        <Route exact path={'/home'} component={SksHome} />
+                        <Route exact path={'/aboutus'} component={aboutUs} />
+                        <Route exact path={'/gallery'} component={gallery} />
+                        <Route exact path={'/events'} component={events} />
+                        <Route exact path={'/contactus'} component={contactUs} />
                     </Switch>
                 </section>
             </div>

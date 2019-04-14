@@ -8,7 +8,6 @@ import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import LoginReducer from "./model/reducers/LoginReducer";
 import AlbumReducer from "./model/reducers/AlbumReducer";
-import {withRouter} from "react-router";
 
 //create reducers
 const reducers = combineReducers({
@@ -28,6 +27,7 @@ ReactDOM.render(
         <App/>
     </Provider>,
     document.getElementById('root'));
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

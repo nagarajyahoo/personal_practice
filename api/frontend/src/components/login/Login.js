@@ -1,13 +1,13 @@
 import React from 'react';
-import {Button, Col, ControlLabel, Form, FormControl, FormGroup, Jumbotron, Row} from 'react-bootstrap';
-import './Login.css';
 import {connect} from 'react-redux';
 import * as AuthActions from '../../model/actions/LoginActions';
+import {Button, Col, Form, FormGroup, Modal, ModalBody, ModalFooter, ModalHeader, Row} from "reactstrap";
+import Input from "reactstrap/es/Input";
 import {withRouter} from "react-router";
 
 class Login extends React.Component {
-    constructor() {
-        super();
+    constructor(context) {
+        super(context);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -25,35 +25,37 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Row>
-                <Jumbotron>
-                    <h2>Welcome to the Garage</h2>
-                </Jumbotron>
-                <Row>
-                    <Col sm={4} smOffset={4}>
-
-                        {this.props.error ? <p className="alert alert-danger">{this.props.error} </p> : null}
-
-                        <Form method={'post'}>
-                            <FormGroup>
-                                <ControlLabel>Login</ControlLabel>
-                                <FormControl type='text'
-                                             name='username'
-                                             placeholder='Username'
-                                             onChange={(event) => this.inputChangeHandler(event, 'username')}/>
-                                <FormControl type='password'
-                                             name='password'
-                                             placeholder='Password'
-                                             onChange={(event) => this.inputChangeHandler(event, 'password')}/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Button bsStyle="success" type="button" onClick={this.onSubmit}>Login</Button>
-                                <Button bsStyle="default" type="reset">Reset</Button>
-                            </FormGroup>
-                        </Form>
-                    </Col>
-                </Row>
-            </Row>
+            <Modal isOpen={this.props.displaySignIn} toggle={this.props.toggle} className={this.props.className}
+                   backdrop={this.props.backdrop}>
+                <ModalHeader toggle={this.toggle}>Log In to your Account</ModalHeader>
+                <ModalBody>
+                    <Row>
+                        <Col sm={12}>
+                            {this.props.error ? <p className="alert alert-danger">{this.props.error} </p> : null}
+                            <Form method={'post'}>
+                                <FormGroup row>
+                                    <Col sm={12} md={12} lg={12}>
+                                        <Input type={'email'}
+                                               placeholder={'Enter Email Id'}
+                                               onChange={(event) => this.inputChangeHandler(event, 'username')}/>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row>
+                                    <Col sm={12} md={12} lg={12}>
+                                        <Input type={'password'}
+                                               placeholder={'Password'}
+                                               onChange={(event) => this.inputChangeHandler(event, 'password')}/>
+                                    </Col>
+                                </FormGroup>
+                            </Form>
+                        </Col>
+                    </Row>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={this.onSubmit}>Login</Button>{' '}
+                    <Button color="secondary" onClick={() => this.props.toggle(false)}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
         );
     }
 }
@@ -73,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
