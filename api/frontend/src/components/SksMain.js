@@ -8,8 +8,8 @@ import {aboutUs} from "./aboutus/AboutUs";
 import {gallery} from "./galleries/Gallery";
 import {contactUs} from "./contactus/ContactUs";
 import {events} from "./events/Events";
+import * as SksFooter from './footer/SksFooter'
 import Login from "./login/Login";
-import TitleSection from "./titlesec/TitleSection";
 
 export default class SksMain extends React.Component {
     constructor(context) {
@@ -77,9 +77,10 @@ export default class SksMain extends React.Component {
                         <Route exact path={'/contactus'} component={contactUs} />
                     </Switch>
                 </section>
+                <SksFooter.sksfooter />
                 <Login isOpen={this.state.displaySignIn}
                        toggle={this.toggleSignIn}
-                       backdrop={this.state.backdrop}/>
+                       backdrop={this.state.backdrop} />
             </div>
         );
     }
