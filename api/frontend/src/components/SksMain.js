@@ -21,6 +21,7 @@ export default class SksMain extends React.Component {
     }
 
     toggleSignIn(display) {
+        console.log('setting state ' + this.state.displaySignIn);
         this.setState({
             displaySignIn: display
         });
@@ -59,7 +60,7 @@ export default class SksMain extends React.Component {
                         </div>
                         <div className="sks-login">
                             <ul>
-                                <li><span onClick={this.toggleSignIn}>Register</span></li>
+                                <li><span onClick={() => this.toggleSignIn(true)}>Register</span></li>
                                 <li><span onClick={() => this.toggleSignIn(true)}>Login</span></li>
                             </ul>
                         </div>
@@ -74,6 +75,9 @@ export default class SksMain extends React.Component {
                         <Route exact path={'/contactus'} component={contactUs} />
                     </Switch>
                 </section>
+                <Login isOpen={this.state.displaySignIn}
+                       toggle={this.toggleSignIn}
+                       backdrop={this.state.backdrop}/>
             </div>
         );
     }

@@ -90,8 +90,8 @@ body {
 }
 
 
-.mybgcolor {
-    background-color: #245734;
+.sks-login ul li:hover {
+    cursor: pointer;
 }
 
 #authors img {

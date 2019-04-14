@@ -25,7 +25,9 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Modal isOpen={this.props.displaySignIn} toggle={this.props.toggle} className={this.props.className}
+            <Modal isOpen={this.props.isOpen}
+                   toggle={this.props.toggle}
+                   className={this.props.className}
                    backdrop={this.props.backdrop}>
                 <ModalHeader toggle={this.toggle}>Log In to your Account</ModalHeader>
                 <ModalBody>
