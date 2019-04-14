@@ -52,6 +52,15 @@ body {
     padding-right: 2.4rem;
 }
 
+.navbar .nav-item .nav-link {
+    color: white;
+}
+
+.navbar .nav-item .nav-link:active,
+.navbar .nav-item .nav-link:focus {
+    color: #ff821f;
+}
+
 .sks-login ul {
     list-style-type: none;
     margin-top: 10px;
