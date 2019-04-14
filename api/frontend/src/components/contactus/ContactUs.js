@@ -6,14 +6,10 @@ import TitleSection from "../titlesec/TitleSection";
 
 export const contactUs = () => {
     return (
-        <div className="container sks-contact-us">
+        <div className="sks-contact-us">
+            <TitleSection title={'WE ALWAYS WELCOME YOUR QUERIES, CONTACT US'}/>
             <Row>
-                <Col>
-                    <TitleSection title={'Contact Us'}/>
-                </Col>
-            </Row>
-            <Row>
-                <Col sm={10} md={4} lg={4} className={'card mr-4'}>
+                <Col sm={10} md={4} lg={4} className={'card mr-4 ml-4'}>
                     <div className={'card-body'}>
                         <h4>Get In Touch</h4>
                         <p className="text-muted">

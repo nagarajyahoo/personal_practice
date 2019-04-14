@@ -9,6 +9,7 @@ import {gallery} from "./galleries/Gallery";
 import {contactUs} from "./contactus/ContactUs";
 import {events} from "./events/Events";
 import Login from "./login/Login";
+import TitleSection from "./titlesec/TitleSection";
 
 export default class SksMain extends React.Component {
     constructor(context) {

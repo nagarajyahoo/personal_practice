@@ -5,12 +5,8 @@ import Col from "reactstrap/es/Col";
 
 export const aboutUs = () => {
     return (
-        <div className={'container'}>
-            <Row>
-                <Col>
-                    <TitleSection title={'About Us'}/>
-                </Col>
-            </Row>
+        <div>
+            <TitleSection title={'WANT TO KNOW MORE ABOUT US ?'}/>
             <Row>
                 <Col>
                     <div>About Us</div>
