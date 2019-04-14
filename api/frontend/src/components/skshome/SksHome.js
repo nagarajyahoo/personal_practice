@@ -1,13 +1,14 @@
 import React from 'react';
-import PhotosCarousel from "../photoscarousel/PhotosCarousel";
 import './SksHome.css';
 
 export default class SksHome extends React.Component {
     render() {
         return (
-            <div className={'sks-home text-center'}>
-                <div className={'carousel-div'}>
-                    <PhotosCarousel />
+            <div id={'showcase'} className={'sks-home text-center'}>
+                <div className="primary-overlay text-white">
+                    <div className="col-lg text-center">
+                        <h1 className="pt-4 mt-5">Welcome to Scottish - Kannada family</h1>
+                    </div>
                 </div>
             </div>
         );

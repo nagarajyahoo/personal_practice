@@ -69,6 +69,7 @@ export default class SksMain extends React.Component {
                 </nav>
                 <section>
                     <Switch>
+                        <Route exact path={'/'} component={SksHome} />
                         <Route exact path={'/home'} component={SksHome} />
                         <Route exact path={'/aboutus'} component={aboutUs} />
                         <Route exact path={'/gallery'} component={gallery} />

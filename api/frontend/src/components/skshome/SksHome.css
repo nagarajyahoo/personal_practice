@@ -1,11 +1,16 @@
-.sks-home {
+#showcase {
+    position: relative;
+    background: url('../../img/mysore-palace.jpg') no-repeat;
+    background-size: 100% 730px;
+    min-height: 500px;
+    background-position-y: -70px;
     width: 100%;
-    background-color: rgba(115, 161, 115, 0.95);
-    align-self: center;
 }
-
-.carousel-div {
+#showcase .primary-overlay {
+    background: rgba(43, 24, 12, 0.432);
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    align-self: center;
-    margin: auto;
+    height: 100%;
 }
