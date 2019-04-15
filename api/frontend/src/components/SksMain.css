@@ -95,8 +95,12 @@ body {
     height: 100%;
 }
 
-.sks-login ul li:hover {
+.sks-login ul li {
     color: white;
+}
+
+.sks-login ul li:hover {
+    color: #ff821f;
     cursor: pointer;
 }
 
