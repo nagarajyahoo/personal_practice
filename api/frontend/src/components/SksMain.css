@@ -61,6 +61,8 @@ body {
 }
 
 .navbar .nav-item .nav-link:active,
+.navbar .nav-item .nav-link.active,
+.navbar .nav-item .nav-link:hover,
 .navbar .nav-item .nav-link:focus {
     color: #ff821f;
 }
@@ -94,6 +96,7 @@ body {
 }
 
 .sks-login ul li:hover {
+    color: white;
     cursor: pointer;
 }
 

@@ -4,7 +4,7 @@ import Row from "reactstrap/es/Row";
 import Col from "reactstrap/es/Col";
 import './About.css';
 
-export const aboutUs = () => {
+const aboutUs = () => {
     return (
         <div className={'sks-about'}>
             <TitleSection title={'WANT TO KNOW MORE ABOUT US ?'}/>
@@ -22,3 +22,5 @@ export const aboutUs = () => {
         </div>
     );
 };
+
+export default aboutUs;
