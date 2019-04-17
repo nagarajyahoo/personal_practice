@@ -1,0 +1,7 @@
+.image-gallery {
+    width: 500px;
+}
+
+.image-gallery.fullscreen {
+    width: 600px;
+}

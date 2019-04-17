@@ -5,11 +5,3 @@
 .sks-gallery-card {
     margin: auto;
 }
-
-.image-gallery {
-    width: 400px;
-}
-
-.image-gallery.fullscreen {
-    width: 600px;
-}

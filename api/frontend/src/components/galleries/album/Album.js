@@ -1,7 +1,7 @@
 import React from 'react';
 import * as actions from "../../../model/actions/GalleryActions";
 import {connect} from "react-redux";
-import {Card, Spinner} from "reactstrap";
+import {Card} from "reactstrap";
 import ImageGallery from "react-image-gallery";
 import './Album.css';
 import CardBody from "reactstrap/es/CardBody";
@@ -16,10 +16,12 @@ class Album extends React.Component {
     }
 
     render() {
-        const content = this.props.loading ? <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> : <ImageGallery items={this.props.albums['d5L9vko2t4dEcS1j6']}/>;
+        const content = this.props.loading ?
+            <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> :
+            <ImageGallery items={this.props.albums[this.props.albumId]}/>;
         return (
             <Card>
-                <CardHeader>Deepavali - 2018</CardHeader>
+                <CardHeader>{this.props.title} - 2018</CardHeader>
                 <CardBody className={'sks-gallery-card'}>
                     {content}
                 </CardBody>
