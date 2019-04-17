@@ -3,6 +3,7 @@ package com.sks.dao.beans;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,7 @@ public class EventsDB {
     private BigDecimal amount;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private List<SksAlbumDB> albums;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -84,6 +86,15 @@ public class EventsDB {
 
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "event")
+    public List<SksAlbumDB> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<SksAlbumDB> albums) {
+        this.albums = albums;
     }
 
     @Override

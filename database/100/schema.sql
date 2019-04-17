@@ -184,9 +184,19 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS sksmain.sks_album (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
+  album_key VARCHAR(255) NULL,
+  album_url TEXT NULL,
+  source VARCHAR(255) NOT NULL,
   create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   update_time TIMESTAMP NULL,
-  PRIMARY KEY (id))
+  events_id INT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX fk_sks_album_events1_idx (events_id ASC) VISIBLE,
+  CONSTRAINT fk_sks_album_events1
+    FOREIGN KEY (events_id)
+    REFERENCES sksmain.events (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

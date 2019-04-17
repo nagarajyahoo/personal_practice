@@ -12,6 +12,10 @@ public class SksAlbumDB {
     private String name;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private String albumKey;
+    private String albumUrl;
+    private String source;
+    private EventsDB event;
     private List<SksAlbumPhotosDB> photos;
 
     @Id
@@ -63,6 +67,16 @@ public class SksAlbumDB {
         this.photos = photos;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "events_id")
+    public EventsDB getEvent() {
+        return event;
+    }
+
+    public void setEvent(EventsDB event) {
+        this.event = event;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,5 +91,35 @@ public class SksAlbumDB {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, createTime, updateTime);
+    }
+
+    @Basic
+    @Column(name = "album_key", nullable = true, length = 255)
+    public String getAlbumKey() {
+        return albumKey;
+    }
+
+    public void setAlbumKey(String albumKey) {
+        this.albumKey = albumKey;
+    }
+
+    @Basic
+    @Column(name = "album_url", nullable = true, length = -1)
+    public String getAlbumUrl() {
+        return albumUrl;
+    }
+
+    public void setAlbumUrl(String albumUrl) {
+        this.albumUrl = albumUrl;
+    }
+
+    @Basic
+    @Column(name = "source", nullable = false, length = 255)
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

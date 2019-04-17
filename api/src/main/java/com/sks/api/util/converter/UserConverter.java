@@ -3,7 +3,6 @@ package com.sks.api.util.converter;
 import com.sks.api.model.UsersDetail;
 import com.sks.dao.beans.SksUsersDB;
 import com.sks.dao.beans.UserDetailsDB;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
