@@ -1,6 +1,6 @@
 import React from 'react';
 import './ContactUs.css';
-import {Row} from "reactstrap";
+import {Button, Row} from "reactstrap";
 import Col from "reactstrap/es/Col";
 import TitleSection from "../titlesec/TitleSection";
 
@@ -79,11 +79,7 @@ export default class ContactUs extends React.Component {
                                         placeholder="Message"
                                         rows="3"/>
                                 </div>
-                                <input
-                                    type="Submit"
-                                    value="Submit"
-                                    className="btn btn-primary btn-lg btn-block"
-                                />
+                                <Button color={'primary'} className={'btn-lg btn-block'} onClick={ () => false}>Submit</Button>
                             </form>
                         </div>
                     </Col>

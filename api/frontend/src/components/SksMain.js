@@ -5,12 +5,12 @@ import SksHome from "./skshome/SksHome";
 import Header from "./header/Header";
 import {Link} from "react-router-dom";
 import AboutUs from "./aboutus/AboutUs";
-import {gallery} from "./galleries/Gallery";
 import ContactUs from "./contactus/ContactUs";
 import {events} from "./events/Events";
 import * as SksFooter from './footer/SksFooter'
 import Login from "./login/Login";
 import {Collapse, Nav, Navbar, NavbarToggler, NavItem, NavLink} from "reactstrap";
+import Gallery from "./galleries/Gallery";
 
 export default class SksMain extends React.Component {
     constructor(context) {
@@ -110,7 +110,7 @@ export default class SksMain extends React.Component {
                         <Route exact path={'/'} component={SksHome} selectTab={'1'}/>
                         <Route exact path={'/home'} component={SksHome} />
                         <Route exact path={'/aboutus'} component={AboutUs} />
-                        <Route exact path={'/gallery'} component={gallery} />
+                        <Route exact path={'/gallery'} component={Gallery} />
                         <Route exact path={'/events'} component={events} />
                         <Route exact path={'/contactus'} component={ContactUs} />
                     </Switch>

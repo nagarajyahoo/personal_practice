@@ -13,3 +13,16 @@ export const get = (url) => {
     });
 };
 
+export const externalget = (url) => {
+    return fetch(url, {
+        method: "GET",
+        // mode: "same-origin",
+        // mode: "cors",
+        // cache: "no-cache",
+        // credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    });
+};
+

@@ -8,11 +8,13 @@ import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import LoginReducer from "./model/reducers/LoginReducer";
 import AlbumReducer from "./model/reducers/AlbumReducer";
+import GalleryReducer from "./model/reducers/GalleryReducer";
 
 //create reducers
 const reducers = combineReducers({
     login: LoginReducer,
-    album: AlbumReducer
+    album: AlbumReducer,
+    gallery: GalleryReducer
 });
 
 //create composers
