@@ -1,0 +1,2 @@
+insert into sksmain.sks_album (name, events_id, album_key, album_url, source) values ('Deepavali-2018', 1, 'Tw5hjZbZpZA5v1ET7', 'https://google-photos-album-demo.glitch.me/Tw5hjZbZpZA5v1ET7', 'google');
+insert into sksmain.sks_album (name, events_id, album_key, album_url, source) values ('Ugadi-2018', 2, 'd5L9vko2t4dEcS1j6', 'https://google-photos-album-demo.glitch.me/d5L9vko2t4dEcS1j6', 'google');

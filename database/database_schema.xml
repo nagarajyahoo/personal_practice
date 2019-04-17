@@ -12,4 +12,20 @@
                  stripComments="true"/>
     </changeSet>
 
+    <changeSet author="Nagaraj" id="2">
+        <sqlFile dbms="mysql"
+                 encoding="utf8"
+                 path="./100/events.sql"
+                 relativeToChangelogFile="true"
+                 stripComments="true"/>
+    </changeSet>
+
+    <changeSet author="Nagaraj" id="3">
+        <sqlFile dbms="mysql"
+                 encoding="utf8"
+                 path="./100/albums.sql"
+                 relativeToChangelogFile="true"
+                 stripComments="true"/>
+    </changeSet>
+
 </databaseChangeLog>
