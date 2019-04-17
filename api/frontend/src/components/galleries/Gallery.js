@@ -2,7 +2,7 @@ import React from 'react';
 import TitleSection from "../titlesec/TitleSection";
 import {Row, Col} from "reactstrap";
 import './Gallery.css';
-import * as actions from "../../model/actions/GalleryActions";
+import * as actions from "../../model/actions/GoogleGalleryActions";
 import {connect} from "react-redux";
 import Album from "./album/Album";
 

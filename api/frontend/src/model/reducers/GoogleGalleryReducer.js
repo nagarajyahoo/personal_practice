@@ -1,11 +1,11 @@
-import * as Actions from '../actions/GalleryActions';
+import * as Actions from '../actions/GoogleGalleryActions';
 
 const initialState = {
     loading: false,
     albums: {}
 };
 
-const galleryReducer = (state = initialState, action) => {
+const googleGalleryReducer = (state = initialState, action) => {
     console.log(action.type);
     switch (action.type) {
         case Actions.LOADING_PHOTOS:
@@ -29,4 +29,4 @@ const galleryReducer = (state = initialState, action) => {
     }
 };
 
-export default galleryReducer;
+export default googleGalleryReducer;

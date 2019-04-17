@@ -88,7 +88,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        carouselPhotos: (albumId) => dispatch(actions.loadPhotos(albumId))
+        carouselPhotos: (albumId) => dispatch(actions.loadAlbumPhotos(albumId))
     }
 };
 

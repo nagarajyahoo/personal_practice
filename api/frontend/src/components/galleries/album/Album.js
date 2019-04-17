@@ -1,5 +1,5 @@
 import React from 'react';
-import * as actions from "../../../model/actions/GalleryActions";
+import * as actions from "../../../model/actions/GoogleGalleryActions";
 import {connect} from "react-redux";
 import {Card} from "reactstrap";
 import ImageGallery from "react-image-gallery";
