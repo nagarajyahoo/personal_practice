@@ -2,9 +2,11 @@ import React from 'react';
 import TitleSection from "../titlesec/TitleSection";
 import {Row, Col} from "reactstrap";
 import './Gallery.css';
-import * as actions from "../../model/actions/GoogleGalleryActions";
+import * as googleActions from "../../model/actions/GoogleGalleryActions";
+import * as albumActions from "../../model/actions/AlbumActions";
 import {connect} from "react-redux";
 import Album from "./album/Album";
+import Loader from "react-loader-spinner";
 
 class Gallery extends React.Component {
     state = {
@@ -12,37 +14,69 @@ class Gallery extends React.Component {
     };
 
     componentDidMount() {
-
+        this.props.loadingAlbum();
+        this.props.getAlbums();
     }
 
     render() {
+        console.log(this.props.albums);
+        const content = this.props.loadingAlbumInProgress ?
+            <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> :
+            this.createAlbums(this.props.albums);
+
         return (
             <div>
                 <TitleSection title={'OUR EVENT GALLERIES'}/>
-                <div className={'sks-gallery-gallery'}>
-                    <Row>
-                        <Col md={6} lg={6}>
-                            <Album albumId={'Tw5hjZbZpZA5v1ET7'} title={'Ugadi'}/>
-                        </Col>
-                        <Col md={6} lg={6}>
-                            <Album albumId={'d5L9vko2t4dEcS1j6'} title={'Deepavali'}/>
-                        </Col>
-                    </Row>
-                </div>
+                {content}
             </div>
         );
+    }
+
+    createAlbums(albums) {
+        if(albums && albums instanceof Array) {
+            console.log('nmr --> ' +  albums);
+
+            const values = albums.map(album => {
+                const albumKey = Object.keys(album)[0];
+                return (
+                        <Row key={albumKey}>
+                            <Col md={6} lg={6}>
+                                <Album albumId={albumKey} title={album.name}/>
+                            </Col>
+                        </Row>
+                    );
+            });
+
+            // const values = Object.keys(albums).map((album, index) => {
+            //     return (
+            //         <Row key={album}>
+            //             <Col md={6} lg={6}>
+            //                 <Album albumId={album} title={albums[album].name}/>
+            //             </Col>
+            //         </Row>
+            //     );
+            // });
+
+            return <div className={'sks-gallery-gallery'}>
+                {values}
+            </div>;
+        }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        albums: state.gallery.albums
+        albums: state.album.albums,
+        loadingAlbumInProgress: state.album.loadingAlbum,
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPhotosUrl: (albumId) => dispatch(actions.getPhotosUrl(albumId))
+        getPhotosUrl: (albumId) => dispatch(googleActions.getPhotosUrl(albumId)),
+        getAlbums: () => dispatch(albumActions.loadAlbums()),
+        loadingAlbum: () => dispatch(albumActions.loadingAlbum(true)),
+        loadedAlbum: () => dispatch(albumActions.loadingAlbum(false))
     }
 };
 

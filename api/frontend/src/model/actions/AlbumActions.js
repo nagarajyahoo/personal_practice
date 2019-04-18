@@ -9,6 +9,13 @@ export const GET_PHOTOS_FAILED = "get_photos_failed";
 export const GET_ALBUMS_SUCCESSFUL = "get_albums_successful";
 export const GET_ALBUMS_FAILED = "get_albums_failed";
 
+export const loadingAlbum = (isLoading) => {
+    return {
+        type: LOADED_ALBUMS,
+        data: isLoading
+    }
+};
+
 const fetchedPhotos = (album) => {
     return {
         type: LOADED_PHOTOS,

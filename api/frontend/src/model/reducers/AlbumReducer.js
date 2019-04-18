@@ -1,15 +1,22 @@
 import * as Actions from '../actions/AlbumActions';
 
 const initialState = {
-    maincarousel: []
+    loadingAlbum: false,
+    albums: null
 };
 
 const photoCarousel = (state = initialState, action) => {
     switch (action.type) {
-        case Actions.LOADED_PHOTOS:
+        case Actions.LOADED_ALBUMS:
             return {
                 ...state,
-                maincarousel: action.data
+                albums: action.data,
+                loadingAlbum: false
+            };
+        case Actions.LOADING_ALBUMS:
+            return {
+                ...state,
+                loadingAlbum: true
             };
         default:
             return {
