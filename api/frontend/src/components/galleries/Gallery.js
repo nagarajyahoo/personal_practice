@@ -1,6 +1,5 @@
 import React from 'react';
 import TitleSection from "../titlesec/TitleSection";
-import {Row, Col} from "reactstrap";
 import './Gallery.css';
 import * as googleActions from "../../model/actions/GoogleGalleryActions";
 import * as albumActions from "../../model/actions/AlbumActions";
@@ -19,7 +18,6 @@ class Gallery extends React.Component {
     }
 
     render() {
-        console.log(this.props.albums);
         const content = this.props.loadingAlbumInProgress ?
             <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> :
             this.createAlbums(this.props.albums);
@@ -33,17 +31,19 @@ class Gallery extends React.Component {
     }
 
     createAlbums(albums) {
-        if(albums && albums instanceof Array) {
+        console.log(albums);
+        if (albums) {
             const values = albums.map(album => {
-                const albumKey = Object.keys(album)[0];
                 return (
-                    <Album key={albumKey} albumId={albumKey} title={album.name}/>
+                    <Album key={album.id} albumId={album.key} title={album.name} albumurl={album.url}/>
                 );
             });
 
-            return <div className={'sks-gallery-gallery'}>
-                {values}
-            </div>;
+            return (
+                <div className={'sks-gallery-gallery'}>
+                    {values}
+                </div>
+            );
         }
     }
 }
@@ -59,8 +59,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getPhotosUrl: (albumId) => dispatch(googleActions.getPhotosUrl(albumId)),
         getAlbums: () => dispatch(albumActions.loadAlbums()),
-        loadingAlbum: () => dispatch(albumActions.loadingAlbum(true)),
-        loadedAlbum: () => dispatch(albumActions.loadingAlbum(false))
+        loadingAlbum: () => dispatch(albumActions.loadingAlbum(true))
     }
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Router, Switch} from "react-router";
+import {Route, Switch} from "react-router";
 import './SksMain.css';
 import SksHome from "./skshome/SksHome";
 import Header from "./header/Header";
@@ -9,7 +9,6 @@ import ContactUs from "./contactus/ContactUs";
 import {events} from "./events/Events";
 import * as SksFooter from './footer/SksFooter'
 import Login from "./login/Login";
-import {Collapse, Nav, Navbar, NavbarToggler, NavItem, NavLink} from "reactstrap";
 import Gallery from "./galleries/Gallery";
 
 export default class SksMain extends React.Component {

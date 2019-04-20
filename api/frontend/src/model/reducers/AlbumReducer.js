@@ -2,7 +2,7 @@ import * as Actions from '../actions/AlbumActions';
 
 const initialState = {
     loadingAlbum: false,
-    albums: null
+    albums: []
 };
 
 const photoCarousel = (state = initialState, action) => {

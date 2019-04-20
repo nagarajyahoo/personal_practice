@@ -1,26 +1,41 @@
 import * as Actions from '../actions/GoogleGalleryActions';
 
 const initialState = {
-    loading: false,
-    albums: {}
+    albums: []
+};
+
+const getIndex = (albums, albumId) => {
+    for (let i = 0; i < albums.length; i++) {
+        if (albumId === albums[i].albumId) {
+            return i;
+        }
+    }
+    return -1;
 };
 
 const googleGalleryReducer = (state = initialState, action) => {
-    console.log(action.type);
     switch (action.type) {
         case Actions.LOADING_PHOTOS:
+            let curAlbums = [];
+            curAlbums = curAlbums.concat(state.albums);
+            let index = getIndex(curAlbums, action.data.albumId);
+            if (index === -1) {
+                curAlbums.push(action.data)
+            } else {
+                curAlbums[index] = action.data;
+            }
             return {
                 ...state,
-                loading: true,
+                albums: curAlbums
             };
         case Actions.GET_PHOTOS_SUCCESSFUL:
-            console.log(action.data);
-            const cur = Object.assign(state.albums);
-            cur[action.data.albumId] = action.data.photos;
+            curAlbums = [];
+            curAlbums = curAlbums.concat(state.albums);
+            index = getIndex(curAlbums, action.data.albumId);
+            curAlbums[index] = action.data;
             return {
                 ...state,
-                albums: cur,
-                loading: false
+                albums: curAlbums
             };
         default:
             return {

@@ -7,7 +7,7 @@ export default class Header extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-3 align-self-center">
-                            <img src="favicon.ico" className="img-fluid rounded-circle sks-logo"/>
+                            <img src="favicon.ico" alt={'favicon'} className="img-fluid rounded-circle sks-logo"/>
                         </div>
                         <div className="col-md-6">
                             <div className="container text-white mt-2">

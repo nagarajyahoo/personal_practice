@@ -10,18 +10,36 @@ import '../../../../node_modules/react-image-gallery/styles/css/image-gallery.cs
 import Loader from "react-loader-spinner";
 
 class Album extends React.Component {
+
+    constructor(props, context) {
+        super(props, context);
+        this.getAlbum = this.getAlbum.bind(this);
+    }
+
     componentDidMount() {
-        this.props.loadingPhotos();
-        this.props.getPhotosUrl(this.props.albumId);
+        this.props.loadingPhotos(this.props.albumId);
+        this.props.getPhotosUrl(this.props.albumId, this.props.albumurl);
+    }
+
+    getAlbum(albums) {
+        for(let i = 0; i < albums.length; i++) {
+            let album = albums[i];
+            if(album.albumId === this.props.albumId) {
+                return album;
+            }
+        }
+        return null;
     }
 
     render() {
-        const content = this.props.loading ?
-            <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> :
-            <ImageGallery items={this.props.albums[this.props.albumId]}/>;
+        const album = this.getAlbum(this.props.albums);
+        const content = (album && album.loaded) ?
+            <ImageGallery items={album.photos}/> :
+            <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> ;
+
         return (
             <Card className={'sks-gallery-card'}>
-                <CardHeader>{this.props.title} - 2018</CardHeader>
+                <CardHeader>{this.props.title}</CardHeader>
                 <CardBody className={'sks-gallery-card-body'}>
                     {content}
                 </CardBody>
@@ -39,8 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPhotosUrl: (albumId) => dispatch(actions.getPhotosUrl(albumId)),
-        loadingPhotos: () => dispatch(actions.loadingPhotos())
+        getPhotosUrl: (albumId, url) => dispatch(actions.getPhotosUrl(albumId, url)),
+        loadingPhotos: (albumId) => dispatch(actions.loadingPhotos(albumId))
     }
 };
 

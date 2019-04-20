@@ -11,7 +11,7 @@ export const GET_ALBUMS_FAILED = "get_albums_failed";
 
 export const loadingAlbum = (isLoading) => {
     return {
-        type: LOADED_ALBUMS,
+        type: LOADING_ALBUMS,
         data: isLoading
     }
 };
@@ -33,11 +33,12 @@ const fetchedAlbums = (data) => {
 const formatAlbums = (albums) => {
     return albums.map(album => {
         return {
-            [album.key]: {
-                url: album.url,
-                name: album.name,
-                source: album.source,
-            }
+            key: album.key,
+            id: album.id,
+            albumId: album.key,
+            url: album.url,
+            name: album.name,
+            source: album.source
         }
     });
 };

@@ -4,8 +4,6 @@ export const GET_PHOTOS_SUCCESSFUL = "get_photos_successful";
 export const LOADING_PHOTOS = "loading_photos";
 export const GET_PHOTOS_FAILED = "get_photos_failed";
 
-const url = 'https://google-photos-album-demo.glitch.me/';
-
 const fetchedPhotosUrl = (albumId, photoUrlArray) => {
     return {
         type: GET_PHOTOS_SUCCESSFUL,
@@ -17,10 +15,13 @@ const fetchedPhotosUrl = (albumId, photoUrlArray) => {
     }
 };
 
-export const loadingPhotos = () => {
+export const loadingPhotos = (albumId) => {
     return {
         type: LOADING_PHOTOS,
-        data: true
+        data: {
+            albumId: albumId,
+            loaded: false
+        }
     }
 };
 
@@ -34,9 +35,9 @@ const formatPhotoUrls = (photoUrlArray) => {
     });
 };
 
-export const getPhotosUrl = (albumId) => {
+export const getPhotosUrl = (albumId, url) => {
     return (dispatch) => {
-        httputils.externalget(url + albumId)
+        httputils.externalget(url)
             .then(response => {
                 if (response.status === 200) {
                     response.json()
