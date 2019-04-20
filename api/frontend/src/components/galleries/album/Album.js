@@ -20,9 +20,9 @@ class Album extends React.Component {
             <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> :
             <ImageGallery items={this.props.albums[this.props.albumId]}/>;
         return (
-            <Card>
+            <Card className={'sks-gallery-card'}>
                 <CardHeader>{this.props.title} - 2018</CardHeader>
-                <CardBody className={'sks-gallery-card'}>
+                <CardBody className={'sks-gallery-card-body'}>
                     {content}
                 </CardBody>
             </Card>

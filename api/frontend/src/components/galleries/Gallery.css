@@ -1,5 +1,5 @@
 .sks-gallery-gallery {
-    margin-left: 10px;
+    display: inline-flex;
 }
 
 .sks-gallery-card {

@@ -11,6 +11,7 @@ const fetchedPhotosUrl = (albumId, photoUrlArray) => {
         type: GET_PHOTOS_SUCCESSFUL,
         data: {
             albumId: albumId,
+            loaded: true,
             photos: formatPhotoUrls(photoUrlArray)
         }
     }

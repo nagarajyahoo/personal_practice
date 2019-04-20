@@ -34,28 +34,12 @@ class Gallery extends React.Component {
 
     createAlbums(albums) {
         if(albums && albums instanceof Array) {
-            console.log('nmr --> ' +  albums);
-
             const values = albums.map(album => {
                 const albumKey = Object.keys(album)[0];
                 return (
-                        <Row key={albumKey}>
-                            <Col md={6} lg={6}>
-                                <Album albumId={albumKey} title={album.name}/>
-                            </Col>
-                        </Row>
-                    );
+                    <Album key={albumKey} albumId={albumKey} title={album.name}/>
+                );
             });
-
-            // const values = Object.keys(albums).map((album, index) => {
-            //     return (
-            //         <Row key={album}>
-            //             <Col md={6} lg={6}>
-            //                 <Album albumId={album} title={albums[album].name}/>
-            //             </Col>
-            //         </Row>
-            //     );
-            // });
 
             return <div className={'sks-gallery-gallery'}>
                 {values}
