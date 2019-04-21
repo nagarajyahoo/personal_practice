@@ -34,7 +34,7 @@ class Album extends React.Component {
     render() {
         const album = this.getAlbum(this.props.albums);
         const content = (album && album.loaded) ?
-            <ImageGallery items={album.photos}/> :
+            <ImageGallery items={album.photos} lazyLoad/> :
             <Loader type="Puff" color={'#F38E4B'} height="100" width="100"/> ;
 
         return (

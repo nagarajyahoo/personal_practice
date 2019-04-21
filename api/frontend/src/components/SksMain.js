@@ -10,6 +10,7 @@ import {events} from "./events/Events";
 import * as SksFooter from './footer/SksFooter'
 import Login from "./login/Login";
 import Gallery from "./galleries/Gallery";
+import Register from "./register/Register";
 
 export default class SksMain extends React.Component {
     constructor(context) {
@@ -98,7 +99,7 @@ export default class SksMain extends React.Component {
                         </div>
                         <div className="sks-login">
                             <ul>
-                                <li><span onClick={() => this.toggleSignIn(true)}>Register</span></li>
+                                <li><Link to={'/register'}>Register</Link></li>
                                 <li><span onClick={() => this.toggleSignIn(true)}>Login</span></li>
                             </ul>
                         </div>
@@ -112,6 +113,7 @@ export default class SksMain extends React.Component {
                         <Route exact path={'/gallery'} component={Gallery} />
                         <Route exact path={'/events'} component={events} />
                         <Route exact path={'/contactus'} component={ContactUs} />
+                        <Route exact path={'/register'} component={Register} />
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
