@@ -13,6 +13,20 @@ export const get = (url) => {
     });
 };
 
+export const post = (url, body) => {
+    return fetch(serverUrl + url, {
+        method: "POST",
+        // mode: "same-origin",
+        // mode: "cors",
+        // cache: "no-cache",
+        // credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: body
+    });
+};
+
 export const externalget = (url) => {
     return fetch(url, {
         method: "GET",

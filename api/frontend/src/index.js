@@ -9,12 +9,14 @@ import thunk from 'redux-thunk';
 import LoginReducer from "./model/reducers/LoginReducer";
 import AlbumReducer from "./model/reducers/AlbumReducer";
 import GalleryReducer from "./model/reducers/GoogleGalleryReducer";
+import RegistrationReducer from "./model/reducers/RegistrationReducer";
 
 //create reducers
 const reducers = combineReducers({
     login: LoginReducer,
     album: AlbumReducer,
-    gallery: GalleryReducer
+    gallery: GalleryReducer,
+    regReducer: RegistrationReducer
 });
 
 //create composers

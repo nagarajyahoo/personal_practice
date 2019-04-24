@@ -1,11 +1,36 @@
 import React from 'react';
-import {Form, Input, Col, Row, FormGroup, CustomInput, Button} from "reactstrap";
+import {Form, Input, Col, Row, FormGroup, CustomInput, Button, Alert} from "reactstrap";
 import './Register.css';
 import TitleSection from "../titlesec/TitleSection";
-import CardHeader from "reactstrap/es/CardHeader";
+import {connect} from "react-redux";
+import * as Actions from '../../model/actions/RegistrationActions';
 
-export default class Register extends React.Component {
+class Register extends React.Component {
+
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+
+        };
+        this.registerUser = this.registerUser.bind(this);
+    }
+
+    registerUser() {
+        console.log(this.state);
+    }
+
     render() {
+        const displayAlert = this.props.regSuccessful !== null;
+        let registrationMsg;
+        if(displayAlert) {
+            const registrationMsgColor = this.props.regSuccessful ? 'success' : 'danger';
+            const regMsg = 'Registration ' + (this.props.regSuccessful ? 'successful' : 'failed');
+            registrationMsg = (
+                <Alert color={registrationMsgColor}>
+                    {regMsg}
+                </Alert>
+            );
+        }
         return (
             <div>
                 <TitleSection title={'REGISTER'}/>
@@ -13,60 +38,105 @@ export default class Register extends React.Component {
                     <div className={'card'}>
                         <div className={'card-body'}>
                             <Form>
+                                <div>
+                                    {registrationMsg}
+                                </div>
                                 <Row>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Input type="email" name="email" id="userEmail" placeholder="Email ID" />
+                                            <Input type="email"
+                                                   name="email"
+                                                   id="userEmail"
+                                                   placeholder="Email ID"
+                                                   onChange={(e) => this.setState({email: e.target.value})} />
                                         </FormGroup>
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Input type="password" name="userPassword" id="userPassword" placeholder="Password" />
+                                            <Input type="password"
+                                                   name="userPassword"
+                                                   id="userPassword"
+                                                   placeholder="Password"
+                                                   onChange={(e) => this.setState({password: e.target.value})} />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Input type="text" name="firstName" id="firstName" placeholder="First Name" />
+                                            <Input type="text"
+                                                   name="firstName"
+                                                   id="firstName"
+                                                   placeholder="First Name"
+                                                   onChange={(e) => this.setState({firstName: e.target.value})} />
                                         </FormGroup>
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Input type="text" name="lastName" id="lastName" placeholder="Last Name" />
+                                            <Input type="text"
+                                                   name="lastName"
+                                                   id="lastName"
+                                                   placeholder="Last Name"
+                                                   onChange={(e) => this.setState({lastName: e.target.value})} />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col md={2}>
                                         <FormGroup inline>
-                                            <CustomInput inline type="radio" id="exampleCustomRadio" name={'user-sex'}> Male </CustomInput>
-                                            <CustomInput inline type="radio" id="exampleCustomRadio2" name={'user-sex'}> Female </CustomInput>
+                                            <CustomInput inline
+                                                         type="radio"
+                                                         id="exampleCustomRadio"
+                                                         name={'user-sex'}
+                                                         onChange={() => this.setState({sex: 'male'})}> Male </CustomInput>
+                                            <CustomInput inline
+                                                         type="radio"
+                                                         id="exampleCustomRadio2"
+                                                         name={'user-sex'}
+                                                         onChange={() => this.setState({sex: 'female'})}> Female </CustomInput>
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <FormGroup>
-                                    <Input type="text" name="userAddress1" id="userAddress1" placeholder="Address Line 1"/>
+                                    <Input type="text"
+                                           name="userAddress1"
+                                           id="userAddress1"
+                                           placeholder="Address Line 1"
+                                           onChange={(e) => this.setState({address1: e.target.value})} />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input type="text" name="userAddress2" id="userAddress2" placeholder="Address Line 2"/>
+                                    <Input type="text"
+                                           name="userAddress2"
+                                           id="userAddress2"
+                                           placeholder="Address Line 2"
+                                           onChange={(e) => this.setState({address2: e.target.value})} />
                                 </FormGroup>
                                 <Row>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Input type="text" name="userCity" id="userCity" placeholder="Current City"/>
+                                            <Input type="text"
+                                                   name="userCity"
+                                                   id="userCity"
+                                                   placeholder="Current City"
+                                                   onChange={(e) => this.setState({city: e.target.value})} />
                                         </FormGroup>
                                     </Col>
                                     <Col md={3}>
                                         <FormGroup>
-                                            <Input type="text" name="userZip" id="userZip" placeholder="Post Code"/>
+                                            <Input type="text"
+                                                   name="userZip"
+                                                   id="userZip"
+                                                   placeholder="Post Code"
+                                                   onChange={(e) => this.setState({postCode: e.target.value})} />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col md={5}/>
                                     <Col md={2}>
-                                        <Button color={'primary'} className={'btn-md btn-block'} onClick={ () => false}>Register</Button>
+                                        <Button disabled={this.props.regInProgress}
+                                                color={'primary'} className={'btn-md btn-block'}
+                                                onClick={this.registerUser}>Register</Button>
                                     </Col>
                                 </Row>
                             </Form>
@@ -77,3 +147,19 @@ export default class Register extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        regInProgress: state.regReducer.regInProgress,
+        regSuccessful: state.regReducer.regSuccessful
+    }
+};
+
+const mapActionToProps = (dispatch) => {
+    return {
+        registrationInProgress: () => dispatch(Actions.registrationInProgress()),
+        registerUser: (userDetails) => dispatch(Actions.registerUser(userDetails))
+    }
+};
+
+export default connect(mapStateToProps, mapActionToProps)(Register);

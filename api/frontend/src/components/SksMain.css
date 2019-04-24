@@ -81,6 +81,20 @@ body {
     border-left: 1px solid rgb(109, 107, 107);
 }
 
+.sks-login ul li a,
+.sks-login ul li a:visited {
+    text-decoration: none;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 12px;
+    display: inline;
+}
+
+.sks-login ul li a:hover{
+    color: #ff821f;
+}
+
 #showcase {
     position: relative;
     min-height: 600px;
