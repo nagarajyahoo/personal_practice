@@ -23,7 +23,7 @@ export const post = (url, body) => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: body
+        body: JSON.stringify(body)
     });
 };
 

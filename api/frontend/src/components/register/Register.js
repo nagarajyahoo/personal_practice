@@ -9,20 +9,30 @@ class Register extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {
-
-        };
-        this.registerUser = this.registerUser.bind(this);
+        this.state = {};
+        this.register = this.register.bind(this);
     }
 
-    registerUser() {
-        console.log(this.state);
+    register() {
+        const userDetails = {
+            email: this.state.email,
+            password: this.state.password,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            phone: this.state.telephone,
+            sex: this.state.sex,
+            address1: this.state.address1,
+            address2: this.state.address2,
+            city: this.state.city,
+            postcode: this.state.postcode
+        };
+        this.props.registerUser(userDetails);
     }
 
     render() {
         const displayAlert = this.props.regSuccessful !== null;
         let registrationMsg;
-        if(displayAlert) {
+        if (displayAlert) {
             const registrationMsgColor = this.props.regSuccessful ? 'success' : 'danger';
             const regMsg = 'Registration ' + (this.props.regSuccessful ? 'successful' : 'failed');
             registrationMsg = (
@@ -44,31 +54,11 @@ class Register extends React.Component {
                                 <Row>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Input type="email"
-                                                   name="email"
-                                                   id="userEmail"
-                                                   placeholder="Email ID"
-                                                   onChange={(e) => this.setState({email: e.target.value})} />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Input type="password"
-                                                   name="userPassword"
-                                                   id="userPassword"
-                                                   placeholder="Password"
-                                                   onChange={(e) => this.setState({password: e.target.value})} />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={6}>
-                                        <FormGroup>
                                             <Input type="text"
                                                    name="firstName"
                                                    id="firstName"
                                                    placeholder="First Name"
-                                                   onChange={(e) => this.setState({firstName: e.target.value})} />
+                                                   onChange={(e) => this.setState({firstName: e.target.value})}/>
                                         </FormGroup>
                                     </Col>
                                     <Col md={6}>
@@ -77,7 +67,38 @@ class Register extends React.Component {
                                                    name="lastName"
                                                    id="lastName"
                                                    placeholder="Last Name"
-                                                   onChange={(e) => this.setState({lastName: e.target.value})} />
+                                                   onChange={(e) => this.setState({lastName: e.target.value})}/>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Input type="email"
+                                                   name="email"
+                                                   id="userEmail"
+                                                   placeholder="Email ID"
+                                                   onChange={(e) => this.setState({email: e.target.value})}/>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Input type="password"
+                                                   name="userPassword"
+                                                   id="userPassword"
+                                                   placeholder="Password"
+                                                   onChange={(e) => this.setState({password: e.target.value})}/>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Input type="text"
+                                                   name="telephone"
+                                                   id="telephone"
+                                                   placeholder="Telephone"
+                                                   onChange={(e) => this.setState({telephone: e.target.value})}/>
                                         </FormGroup>
                                     </Col>
                                 </Row>
@@ -102,14 +123,14 @@ class Register extends React.Component {
                                            name="userAddress1"
                                            id="userAddress1"
                                            placeholder="Address Line 1"
-                                           onChange={(e) => this.setState({address1: e.target.value})} />
+                                           onChange={(e) => this.setState({address1: e.target.value})}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Input type="text"
                                            name="userAddress2"
                                            id="userAddress2"
                                            placeholder="Address Line 2"
-                                           onChange={(e) => this.setState({address2: e.target.value})} />
+                                           onChange={(e) => this.setState({address2: e.target.value})}/>
                                 </FormGroup>
                                 <Row>
                                     <Col md={6}>
@@ -118,7 +139,7 @@ class Register extends React.Component {
                                                    name="userCity"
                                                    id="userCity"
                                                    placeholder="Current City"
-                                                   onChange={(e) => this.setState({city: e.target.value})} />
+                                                   onChange={(e) => this.setState({city: e.target.value})}/>
                                         </FormGroup>
                                     </Col>
                                     <Col md={3}>
@@ -127,7 +148,7 @@ class Register extends React.Component {
                                                    name="userZip"
                                                    id="userZip"
                                                    placeholder="Post Code"
-                                                   onChange={(e) => this.setState({postCode: e.target.value})} />
+                                                   onChange={(e) => this.setState({postCode: e.target.value})}/>
                                         </FormGroup>
                                     </Col>
                                 </Row>
@@ -136,7 +157,7 @@ class Register extends React.Component {
                                     <Col md={2}>
                                         <Button disabled={this.props.regInProgress}
                                                 color={'primary'} className={'btn-md btn-block'}
-                                                onClick={this.registerUser}>Register</Button>
+                                                onClick={this.register}>Register</Button>
                                     </Col>
                                 </Row>
                             </Form>

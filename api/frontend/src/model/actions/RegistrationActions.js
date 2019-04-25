@@ -11,6 +11,13 @@ const registrationSuccessful = (data) => {
     }
 };
 
+const registrationFailed = () => {
+    return {
+        type: REGISTRATION_FAILED,
+        data: 'registration failed'
+    }
+};
+
 export const registrationInProgress = () => {
     return {
         type: REGISTRATION_IN_PROGRESS
@@ -18,6 +25,7 @@ export const registrationInProgress = () => {
 };
 
 export const registerUser = (userDetails) => {
+    console.log(userDetails);
     return (dispatch) => {
         httputils.post('/public/register', userDetails)
             .then(response => {
@@ -27,12 +35,16 @@ export const registerUser = (userDetails) => {
                             dispatch(registrationSuccessful(data));
                         })
                         .catch(error => {
-                            console.log('error', error);
+                            console.error(error);
+                            dispatch(registrationFailed());
                         })
+                } else {
+                    dispatch(registrationFailed());
                 }
             })
             .catch(error => {
                 console.error(error);
+                dispatch(registrationFailed());
             })
     }
 };
