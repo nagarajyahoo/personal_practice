@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input, Col, Row, FormGroup, CustomInput, Button, Alert} from "reactstrap";
+import {Alert, Button, Col, CustomInput, Form, FormFeedback, FormGroup, Input, Row} from "reactstrap";
 import './Register.css';
 import TitleSection from "../titlesec/TitleSection";
 import {connect} from "react-redux";
@@ -9,11 +9,28 @@ class Register extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {};
+        this.state = {
+            errorFields: [],
+            userDetails: {
+                email: null,
+                password: null,
+                firstName: null,
+                lastName: null,
+                phone: null,
+                sex: null,
+                address1: null,
+                address2: null,
+                city: null,
+                postcode: null
+            }
+        };
         this.register = this.register.bind(this);
+        this.validateForm = this.validateForm.bind(this);
+        this.isInvalid = this.isInvalid.bind(this);
     }
 
-    register() {
+    register(e) {
+        e.preventDefault();
         const userDetails = {
             email: this.state.email,
             password: this.state.password,
@@ -26,7 +43,46 @@ class Register extends React.Component {
             city: this.state.city,
             postcode: this.state.postcode
         };
-        this.props.registerUser(userDetails);
+
+        this.setState({
+            userDetails: userDetails
+        });
+
+        this.validateForm(userDetails);
+
+        if (Object.keys(this.state.userDetails).length === 0) {
+            this.props.registerUser(userDetails);
+        }
+    }
+
+    validateForm(userDetails) {
+        const fields = Object.keys(this.state.userDetails);
+        const errors = [];
+        fields.forEach(field => {
+            switch (field) {
+                case 'email':
+                case 'password':
+                case 'firstName':
+                case 'lastName':
+                case 'phone':
+                case 'city':
+                case 'postcode':
+                    const value = userDetails[field];
+                    if (value === undefined || value === null || value.trim() === '') {
+                        errors.push(field);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
+        this.setState({
+            errorFields: errors
+        });
+    }
+
+    isInvalid(field) {
+       return (this.state.errorFields.indexOf(field) !== -1);
     }
 
     render() {
@@ -47,7 +103,7 @@ class Register extends React.Component {
                 <div className={'sks-register'}>
                     <div className={'card'}>
                         <div className={'card-body'}>
-                            <Form>
+                            <Form onSubmit={this.register}>
                                 <div>
                                     {registrationMsg}
                                 </div>
@@ -57,8 +113,10 @@ class Register extends React.Component {
                                             <Input type="text"
                                                    name="firstName"
                                                    id="firstName"
-                                                   placeholder="First Name"
+                                                   invalid={this.isInvalid('firstName')}
+                                                   placeholder='First Name'
                                                    onChange={(e) => this.setState({firstName: e.target.value})}/>
+                                            <FormFeedback>{'First Name is required'}</FormFeedback>
                                         </FormGroup>
                                     </Col>
                                     <Col md={6}>
@@ -66,8 +124,10 @@ class Register extends React.Component {
                                             <Input type="text"
                                                    name="lastName"
                                                    id="lastName"
+                                                   invalid={this.isInvalid('lastName')}
                                                    placeholder="Last Name"
                                                    onChange={(e) => this.setState({lastName: e.target.value})}/>
+                                            <FormFeedback>{'Last Name is required'}</FormFeedback>
                                         </FormGroup>
                                     </Col>
                                 </Row>
@@ -77,8 +137,10 @@ class Register extends React.Component {
                                             <Input type="email"
                                                    name="email"
                                                    id="userEmail"
+                                                   invalid={this.isInvalid('email')}
                                                    placeholder="Email ID"
                                                    onChange={(e) => this.setState({email: e.target.value})}/>
+                                            <FormFeedback>{'Email ID is required'}</FormFeedback>
                                         </FormGroup>
                                     </Col>
                                     <Col md={6}>
@@ -86,8 +148,10 @@ class Register extends React.Component {
                                             <Input type="password"
                                                    name="userPassword"
                                                    id="userPassword"
+                                                   invalid={this.isInvalid('password')}
                                                    placeholder="Password"
                                                    onChange={(e) => this.setState({password: e.target.value})}/>
+                                            <FormFeedback>{'Password is required'}</FormFeedback>
                                         </FormGroup>
                                     </Col>
                                 </Row>
@@ -97,8 +161,10 @@ class Register extends React.Component {
                                             <Input type="text"
                                                    name="telephone"
                                                    id="telephone"
+                                                   invalid={this.isInvalid('phone')}
                                                    placeholder="Telephone"
                                                    onChange={(e) => this.setState({telephone: e.target.value})}/>
+                                            <FormFeedback>{'Telephone is required'}</FormFeedback>
                                         </FormGroup>
                                     </Col>
                                 </Row>
@@ -138,8 +204,10 @@ class Register extends React.Component {
                                             <Input type="text"
                                                    name="userCity"
                                                    id="userCity"
+                                                   invalid={this.isInvalid('city')}
                                                    placeholder="Current City"
                                                    onChange={(e) => this.setState({city: e.target.value})}/>
+                                            <FormFeedback>{'City is required'}</FormFeedback>
                                         </FormGroup>
                                     </Col>
                                     <Col md={3}>
@@ -147,8 +215,10 @@ class Register extends React.Component {
                                             <Input type="text"
                                                    name="userZip"
                                                    id="userZip"
+                                                   invalid={this.isInvalid('postcode')}
                                                    placeholder="Post Code"
-                                                   onChange={(e) => this.setState({postCode: e.target.value})}/>
+                                                   onChange={(e) => this.setState({postcode: e.target.value})}/>
+                                            <FormFeedback>{'Post Code is required'}</FormFeedback>
                                         </FormGroup>
                                     </Col>
                                 </Row>
@@ -156,8 +226,9 @@ class Register extends React.Component {
                                     <Col md={5}/>
                                     <Col md={2}>
                                         <Button disabled={this.props.regInProgress}
-                                                color={'primary'} className={'btn-md btn-block'}
-                                                onClick={this.register}>Register</Button>
+                                                color={'primary'} className={'btn-md btn-block'}>
+                                            Register
+                                        </Button>
                                     </Col>
                                 </Row>
                             </Form>
