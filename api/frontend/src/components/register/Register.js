@@ -50,7 +50,7 @@ class Register extends React.Component {
 
         this.validateForm(userDetails);
 
-        if (Object.keys(this.state.userDetails).length === 0) {
+        if (this.state.errorFields.length === 0) {
             this.props.registerUser(userDetails);
         }
     }

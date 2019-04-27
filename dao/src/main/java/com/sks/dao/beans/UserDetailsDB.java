@@ -19,6 +19,11 @@ public class UserDetailsDB {
     private Timestamp updateTime;
     private int sksUsersId;
     private SksUsersDB sksUser;
+    private Byte sex;
+    private String city;
+    private String postcode;
+    private String address1;
+    private String address2;
 
     @Basic
     @Column(name = "phone", nullable = false, length = 45)
@@ -107,5 +112,55 @@ public class UserDetailsDB {
     @Override
     public int hashCode() {
         return Objects.hash(phone, firstName, lastName, createTime, updateTime, sksUsersId);
+    }
+
+    @Basic
+    @Column(name = "sex", nullable = true)
+    public Byte getSex() {
+        return sex;
+    }
+
+    public void setSex(Byte sex) {
+        this.sex = sex;
+    }
+
+    @Basic
+    @Column(name = "city", nullable = true, length = 255)
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Basic
+    @Column(name = "postcode", nullable = true, length = 45)
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    @Basic
+    @Column(name = "address1", nullable = true, length = -1)
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    @Basic
+    @Column(name = "address2", nullable = true, length = -1)
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
     }
 }

@@ -97,9 +97,14 @@ CREATE TABLE IF NOT EXISTS sksmain.user_details (
   phone VARCHAR(45) NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
+  sks_users_id INT NOT NULL,
+  sex TINYINT NULL DEFAULT -1,
+  city VARCHAR(255) NULL,
+  postcode VARCHAR(45) NULL,
+  address1 TEXT NULL,
+  address2 TEXT NULL,
   create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   update_time TIMESTAMP NULL,
-  sks_users_id INT NOT NULL,
   PRIMARY KEY (sks_users_id),
   CONSTRAINT fk_user_details_sks_users1
     FOREIGN KEY (sks_users_id)

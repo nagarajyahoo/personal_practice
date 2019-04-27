@@ -1,6 +1,7 @@
 package com.sks.api.util.converter;
 
 import com.sks.api.model.UsersDetail;
+import com.sks.dao.UserSex;
 import com.sks.dao.beans.SksUsersDB;
 import com.sks.dao.beans.UserDetailsDB;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +34,11 @@ public class UserConverter {
         dbUserDetail.setPhone(user.getPhone());
         dbUserDetail.setFirstName(user.getFirstName());
         dbUserDetail.setLastName(user.getLastName());
+        dbUserDetail.setAddress1(user.getAddress1());
+        dbUserDetail.setAddress2(user.getAddress2());
+        dbUserDetail.setCity(user.getCity());
+        dbUserDetail.setPostcode(user.getPostcode());
+        dbUserDetail.setSex(UserSex.fromStrVal(user.getSex()).dbVal);
         return dbUserDetail;
     }
 
