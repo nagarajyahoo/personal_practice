@@ -11,10 +11,9 @@ class Login extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onSubmit = () => {
+    onSubmit = (event) => {
+        event.preventDefault();
         this.props.login(this.state.username, this.state.password);
-        console.log(this.props.history);
-        this.props.history.push('/')
     };
 
     inputChangeHandler = (event, type) => {
@@ -29,12 +28,12 @@ class Login extends React.Component {
                    toggle={this.props.toggle}
                    className={this.props.className}
                    backdrop={this.props.backdrop}>
-                <ModalHeader toggle={this.toggle}>Log In to your Account</ModalHeader>
-                <ModalBody>
-                    <Row>
-                        <Col sm={12}>
-                            {this.props.error ? <p className="alert alert-danger">{this.props.error} </p> : null}
-                            <Form method={'post'}>
+                <Form onSubmit={this.onSubmit}>
+                    <ModalHeader toggle={this.toggle}>Log In to your Account</ModalHeader>
+                    <ModalBody>
+                        <Row>
+                            <Col sm={12}>
+                                {this.props.error ? <p className="alert alert-danger">{this.props.error} </p> : null}
                                 <FormGroup row>
                                     <Col sm={12} md={12} lg={12}>
                                         <Input type={'email'}
@@ -49,14 +48,14 @@ class Login extends React.Component {
                                                onChange={(event) => this.inputChangeHandler(event, 'password')}/>
                                     </Col>
                                 </FormGroup>
-                            </Form>
-                        </Col>
-                    </Row>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={this.onSubmit}>Login</Button>{' '}
-                    <Button color="secondary" onClick={() => this.props.toggle(false)}>Cancel</Button>
-                </ModalFooter>
+                            </Col>
+                        </Row>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={(e) => this.onSubmit(e)}>Login</Button>{' '}
+                        <Button color="secondary" onClick={() => this.props.toggle(false)}>Cancel</Button>
+                    </ModalFooter>
+                </Form>
             </Modal>
         );
     }

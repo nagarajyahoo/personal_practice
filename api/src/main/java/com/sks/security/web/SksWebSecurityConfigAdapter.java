@@ -3,6 +3,7 @@ package com.sks.security.web;
 import com.sks.security.auth.SksUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -50,16 +51,18 @@ public class SksWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         //@formatter:off
-        http.csrf().disable()
+        http
                 .authorizeRequests()
-                    .antMatchers("/api/**").authenticated()
-                    .antMatchers("/public/**").permitAll()
-                    .antMatchers("/oauth/**").permitAll()
-                    .antMatchers("/register").anonymous()
-                    .antMatchers("/register").permitAll()
+                        .antMatchers(HttpMethod.OPTIONS).anonymous()
+                        .antMatchers("/api/**").authenticated()
+                        .antMatchers("/public/**").permitAll()
+                        .antMatchers("/oauth/**").anonymous()
+                        .antMatchers("/register").anonymous()
+                        .antMatchers("/register").permitAll()
+                 .and()
+                    .cors()
                 .and()
-                    .anonymous()
-                .and()
+                    .csrf().disable()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
         //@formatter:on
     }

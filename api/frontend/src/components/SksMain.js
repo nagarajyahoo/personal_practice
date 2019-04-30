@@ -11,8 +11,10 @@ import * as SksFooter from './footer/SksFooter'
 import Login from "./login/Login";
 import Gallery from "./galleries/Gallery";
 import Register from "./register/Register";
+import * as AuthActions from "../model/actions/LoginActions";
+import {connect} from "react-redux";
 
-export default class SksMain extends React.Component {
+class SksMain extends React.Component {
     constructor(context) {
         super(context);
         this.state = {
@@ -59,7 +61,6 @@ export default class SksMain extends React.Component {
     }
 
     selectTab(tabId) {
-        localStorage.setItem('tabId', tabId);
         this.setState({
             tabId: tabId
         })
@@ -81,6 +82,7 @@ export default class SksMain extends React.Component {
 
     render() {
         const nameItems = this.navItems();
+        const signInText = this.props.loggedIn ? 'Log Out' : 'Log In';
         return (
             <div className={'sksmain'}>
                 <Header/>
@@ -100,7 +102,7 @@ export default class SksMain extends React.Component {
                         <div className="sks-login">
                             <ul>
                                 <li><Link to={'/register'}>Register</Link></li>
-                                <li><span onClick={() => this.toggleSignIn(true)}>Login</span></li>
+                                <li><span onClick={() => this.toggleSignIn(!this.props.loggedIn)}>{signInText}</span></li>
                             </ul>
                         </div>
                     </div>
@@ -117,10 +119,24 @@ export default class SksMain extends React.Component {
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
-                <Login isOpen={this.state.displaySignIn}
+                <Login isOpen={this.props.loggedIn ? false : this.state.displaySignIn}
                        toggle={this.toggleSignIn}
                        backdrop={this.state.backdrop}/>
             </div>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.login.loggedIn
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (userId, password) => dispatch(AuthActions.login(userId, password))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SksMain);

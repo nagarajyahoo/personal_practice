@@ -4,7 +4,8 @@ const initialState = {
     token: null,
     userId: null,
     error: null,
-    loggedIn: false
+    loggedIn: false,
+    processing: false
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -12,16 +13,23 @@ const loginReducer = (state = initialState, action) => {
         case Actions.PROCESSING:
             return {
                 ...state,
-                error: undefined
+                loggedIn: false,
+                error: undefined,
+                processing: true
             };
         case Actions.LOGIN_SUCCESSFUL:
             return {
                 ...state,
-                token: action.data.token
+                error: null,
+                loggedIn: true,
+                processing: false,
+                token: action.data
             };
         case Actions.LOGIN_FAILURE:
             return {
                 ...state,
+                loggedIn: false,
+                processing: false,
                 error: action.data
             };
         default:
