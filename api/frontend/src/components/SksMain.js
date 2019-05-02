@@ -53,6 +53,7 @@ class SksMain extends React.Component {
         this.selectTab = this.selectTab.bind(this);
         this.navItems = this.navItems.bind(this);
         this.createSignInLink = this.createSignInLink.bind(this);
+        this.signOut = this.signOut.bind(this);
     }
 
     toggleSignIn(display) {
@@ -65,6 +66,11 @@ class SksMain extends React.Component {
         this.setState({
             tabId: tabId
         })
+    }
+
+    signOut() {
+        this.toggleSignIn(false);
+        this.props.logout();
     }
 
     navItems() {
@@ -120,7 +126,7 @@ class SksMain extends React.Component {
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
-                <Login isOpen={this.state.displaySignIn}
+                <Login isOpen={this.props.loggedIn ? false : this.state.displaySignIn}
                        toggle={this.toggleSignIn}
                        backdrop={this.state.backdrop}/>
             </div>
@@ -129,7 +135,7 @@ class SksMain extends React.Component {
 
     createSignInLink(loggedIn) {
         return loggedIn ?
-            <span onClick={() => this.props.logout()}>Sign Out</span> :
+            <span onClick={() => this.signOut()}>Sign Out</span> :
             <span onClick={() => this.toggleSignIn(true)}>Sign In</span>;
     }
 }
