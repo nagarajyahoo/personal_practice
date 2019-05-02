@@ -31,6 +31,7 @@ class Register extends React.Component {
 
     register(e) {
         e.preventDefault();
+        this.props.clearRegistration();
         const userDetails = {
             email: this.state.email,
             password: this.state.password,
@@ -48,9 +49,9 @@ class Register extends React.Component {
             userDetails: userDetails
         });
 
-        this.validateForm(userDetails);
+        const errors = this.validateForm(userDetails);
 
-        if (this.state.errorFields.length === 0) {
+        if (errors.length === 0) {
             this.props.registerUser(userDetails);
         }
     }
@@ -79,10 +80,11 @@ class Register extends React.Component {
         this.setState({
             errorFields: errors
         });
+        return errors;
     }
 
     isInvalid(field) {
-       return (this.state.errorFields.indexOf(field) !== -1);
+        return (this.state.errorFields.indexOf(field) !== -1);
     }
 
     render() {
@@ -226,7 +228,8 @@ class Register extends React.Component {
                                     <Col md={5}/>
                                     <Col md={2}>
                                         <Button disabled={this.props.regInProgress}
-                                                color={'primary'} className={'btn-md btn-block'}>
+                                                color={'primary'} className={'btn-md btn-block'}
+                                                onClick={(e) => this.register(e)}>
                                             Register
                                         </Button>
                                     </Col>
@@ -250,6 +253,7 @@ const mapStateToProps = (state) => {
 const mapActionToProps = (dispatch) => {
     return {
         registrationInProgress: () => dispatch(Actions.registrationInProgress()),
+        clearRegistration: () => dispatch(Actions.clearRegistration()),
         registerUser: (userDetails) => dispatch(Actions.registerUser(userDetails))
     }
 };

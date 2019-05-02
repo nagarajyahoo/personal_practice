@@ -1,4 +1,5 @@
 import * as Actions from '../actions/LoginActions';
+import {LOGOUT_SUCCESSFUL} from "../actions/LoginActions";
 
 const initialState = {
     token: null,
@@ -32,6 +33,8 @@ const loginReducer = (state = initialState, action) => {
                 processing: false,
                 error: action.data
             };
+        case LOGOUT_SUCCESSFUL:
+            return initialState;
         default:
             return state;
     }

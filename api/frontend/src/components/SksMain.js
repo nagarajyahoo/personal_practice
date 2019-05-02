@@ -52,6 +52,7 @@ class SksMain extends React.Component {
         this.toggleSignIn = this.toggleSignIn.bind(this);
         this.selectTab = this.selectTab.bind(this);
         this.navItems = this.navItems.bind(this);
+        this.createSignInLink = this.createSignInLink.bind(this);
     }
 
     toggleSignIn(display) {
@@ -82,7 +83,7 @@ class SksMain extends React.Component {
 
     render() {
         const nameItems = this.navItems();
-        const signInText = this.props.loggedIn ? 'Log Out' : 'Log In';
+        const signInText = this.createSignInLink(this.props.loggedIn);
         return (
             <div className={'sksmain'}>
                 <Header/>
@@ -102,7 +103,7 @@ class SksMain extends React.Component {
                         <div className="sks-login">
                             <ul>
                                 <li><Link to={'/register'}>Register</Link></li>
-                                <li><span onClick={() => this.toggleSignIn(!this.props.loggedIn)}>{signInText}</span></li>
+                                <li>{signInText}</li>
                             </ul>
                         </div>
                     </div>
@@ -110,20 +111,26 @@ class SksMain extends React.Component {
                 <section>
                     <Switch>
                         <Route exact path={'/'} component={SksHome} selectTab={'1'}/>
-                        <Route exact path={'/home'} component={SksHome} />
-                        <Route exact path={'/aboutus'} component={AboutUs} />
-                        <Route exact path={'/gallery'} component={Gallery} />
-                        <Route exact path={'/events'} component={events} />
-                        <Route exact path={'/contactus'} component={ContactUs} />
-                        <Route exact path={'/register'} component={Register} />
+                        <Route exact path={'/home'} component={SksHome}/>
+                        <Route exact path={'/aboutus'} component={AboutUs}/>
+                        <Route exact path={'/gallery'} component={Gallery}/>
+                        <Route exact path={'/events'} component={events}/>
+                        <Route exact path={'/contactus'} component={ContactUs}/>
+                        <Route exact path={'/register'} component={Register}/>
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
-                <Login isOpen={this.props.loggedIn ? false : this.state.displaySignIn}
+                <Login isOpen={this.state.displaySignIn}
                        toggle={this.toggleSignIn}
                        backdrop={this.state.backdrop}/>
             </div>
         );
+    }
+
+    createSignInLink(loggedIn) {
+        return loggedIn ?
+            <span onClick={() => this.props.logout()}>Sign Out</span> :
+            <span onClick={() => this.toggleSignIn(true)}>Sign In</span>;
     }
 }
 
@@ -135,7 +142,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (userId, password) => dispatch(AuthActions.login(userId, password))
+        logout: () => dispatch(AuthActions.logout())
     }
 };
 

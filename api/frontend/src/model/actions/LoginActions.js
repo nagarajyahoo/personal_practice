@@ -1,10 +1,14 @@
 export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL';
+export const LOGOUT_SUCCESSFUL = 'LOGOUT_SUCCESSFUL';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const PROCESSING = 'PROCESSING';
 
+const ACCESS_TOKEN_KEY = 'access_token';
+const REFRESH_TOKEN_KEY = 'refresh_token';
+
 const loginSuccessful = (token) => {
-    localStorage.setItem('access_token', token['access_token']);
-    localStorage.setItem('refresh_token', token['refresh_token']);
+    localStorage.setItem(ACCESS_TOKEN_KEY, token[ACCESS_TOKEN_KEY]);
+    localStorage.setItem(REFRESH_TOKEN_KEY, token[REFRESH_TOKEN_KEY]);
     return {type: LOGIN_SUCCESSFUL, data: token}
 };
 
@@ -14,6 +18,12 @@ const processing = () => {
 
 const loginFailure = (reason) => {
     return {type: LOGIN_FAILURE, data: reason}
+};
+
+export const logout = () => {
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    localStorage.removeItem(REFRESH_TOKEN_KEY);
+    return {type: LOGOUT_SUCCESSFUL}
 };
 
 export const login = (username, password) => {
@@ -32,7 +42,7 @@ export const login = (username, password) => {
             formData.append(key, jsonData[key]);
         }
 
-        return fetch('/oauth/token', {
+        return fetch('http://localhost:8080/oauth/token', {
             method: "POST",
             mode: "cors",
             credentials: 'include',

@@ -3,6 +3,7 @@ import * as httputils from '../../utils/HttpUtils';
 export const REGISTRATION_SUCCESSFUL = 'registration_successful';
 export const REGISTRATION_FAILED = 'registration_failed';
 export const REGISTRATION_IN_PROGRESS = 'registration_in_progress';
+export const CLEAR_REGISTRATION = 'clear_registration';
 
 const registrationSuccessful = (data) => {
     return {
@@ -24,9 +25,17 @@ export const registrationInProgress = () => {
     }
 };
 
+export const clearRegistration = () => {
+    return {
+        type: CLEAR_REGISTRATION
+    }
+};
+
 export const registerUser = (userDetails) => {
     console.log(userDetails);
     return (dispatch) => {
+        dispatch(registrationInProgress());
+
         httputils.post('/public/register', userDetails)
             .then(response => {
                 if (response.status === 200) {

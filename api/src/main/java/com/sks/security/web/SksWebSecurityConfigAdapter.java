@@ -53,7 +53,7 @@ public class SksWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
         //@formatter:off
         http
                 .authorizeRequests()
-                        .antMatchers(HttpMethod.OPTIONS).anonymous()
+                        .antMatchers(HttpMethod.OPTIONS).permitAll()
                         .antMatchers("/api/**").authenticated()
                         .antMatchers("/public/**").permitAll()
                         .antMatchers("/oauth/**").anonymous()

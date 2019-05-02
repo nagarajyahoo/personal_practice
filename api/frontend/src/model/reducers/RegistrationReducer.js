@@ -11,19 +11,25 @@ const registrationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 regInProgress: true,
-                regSuccessful: null,
+                regSuccessful: null
             };
         case Actions.REGISTRATION_SUCCESSFUL:
             return {
                 ...state,
                 regInProgress: false,
-                regSuccessful: true,
+                regSuccessful: true
             };
         case Actions.REGISTRATION_FAILED:
             return {
                 ...state,
                 regInProgress: false,
-                regSuccessful: false,
+                regSuccessful: false
+            };
+        case Actions.CLEAR_REGISTRATION:
+            return {
+                ...state,
+                regInProgress: false,
+                regSuccessful: null
             };
         default:
             return {
