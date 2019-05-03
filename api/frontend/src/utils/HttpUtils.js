@@ -1,4 +1,5 @@
 const serverUrl = 'http://localhost:8080';
+const ACCESS_TOKEN_KEY = 'access_token';
 
 export const get = (url) => {
     return fetch(serverUrl + url, {
@@ -38,5 +39,9 @@ export const externalget = (url) => {
             "Content-Type": "application/json"
         },
     });
+};
+
+export const isLoggedIn = () => {
+  return localStorage.getItem(ACCESS_TOKEN_KEY) !== null;
 };
 

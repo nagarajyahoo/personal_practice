@@ -13,6 +13,7 @@ import Gallery from "./galleries/Gallery";
 import Register from "./register/Register";
 import * as AuthActions from "../model/actions/LoginActions";
 import {connect} from "react-redux";
+import * as httputils from '../utils/HttpUtils';
 
 class SksMain extends React.Component {
     constructor(context) {
@@ -126,7 +127,7 @@ class SksMain extends React.Component {
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
-                <Login isOpen={this.props.loggedIn ? false : this.state.displaySignIn}
+                <Login isOpen={(this.props.loggedIn || httputils.isLoggedIn()) ? false : this.state.displaySignIn}
                        toggle={this.toggleSignIn}
                        backdrop={this.state.backdrop}/>
             </div>
@@ -134,7 +135,7 @@ class SksMain extends React.Component {
     }
 
     createSignInLink(loggedIn) {
-        return loggedIn ?
+        return (loggedIn || httputils.isLoggedIn())?
             <span onClick={() => this.signOut()}>Sign Out</span> :
             <span onClick={() => this.toggleSignIn(true)}>Sign In</span>;
     }
