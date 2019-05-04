@@ -51,9 +51,14 @@ body {
     border-top: 1px solid rgb(243, 142, 75);
     border-bottom: 1px solid rgb(243, 142, 75);
 }
+
 .navbar .nav-item {
     font-size: 1rem;
     padding-right: 2.4rem;
+}
+
+.navbar .nav-item .dropdown-menu {
+    background-color: rgb(183, 181, 181);
 }
 
 .navbar .nav-item .nav-link {

@@ -48,6 +48,23 @@ class SksMain extends React.Component {
                     name: 'Contact Us',
                     link: '/contactus'
                 }
+            ],
+            adminItems: [
+                {
+                    id: 'a-1',
+                    name: 'Members',
+                    link: '/members'
+                },
+                {
+                    id: 'a-2',
+                    name: 'Payments',
+                    link: '/payments'
+                },
+                {
+                    id: 'a-3',
+                    name: 'Events',
+                    link: '/manageevents'
+                }
             ]
         };
         this.toggleSignIn = this.toggleSignIn.bind(this);
@@ -55,6 +72,8 @@ class SksMain extends React.Component {
         this.navItems = this.navItems.bind(this);
         this.createSignInLink = this.createSignInLink.bind(this);
         this.signOut = this.signOut.bind(this);
+        this.adminTab = this.adminTab.bind(this);
+        this.isAdminPath = this.isAdminPath.bind(this);
     }
 
     toggleSignIn(display) {
@@ -74,8 +93,39 @@ class SksMain extends React.Component {
         this.props.logout();
     }
 
+    adminTab() {
+        const currpath = this.getCurrpath();
+        const adminLinks = this.state.adminItems.map(adminItem => {
+            return (
+                <Link
+                    key={adminItem.id}
+                    onClick={() => this.selectTab(adminItem.id)}
+                    className={currpath === adminItem.link ? 'dropdown-item active' : 'dropdown-item'}
+                    to={adminItem.link}>
+                    {adminItem.name}
+                </Link>
+            )
+        });
+        return (
+            <li className="nav-item dropdown">
+                <Link className={this.isAdminPath() ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
+                      to="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false">
+                    Admin
+                </Link>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {adminLinks}
+                </div>
+            </li>
+        );
+    }
+
     navItems() {
-        const currpath = window.location.pathname === '/' ? '/home' : window.location.pathname;
+        const currpath = this.getCurrpath();
         return this.state.navItems.map(navItem => {
             return (
                 <li key={navItem.id} className={'nav-item'}>
@@ -88,9 +138,26 @@ class SksMain extends React.Component {
         })
     }
 
+    isAdminPath() {
+        return this.state.adminItems
+            .findIndex(adminItem => adminItem.link === window.location.pathname) !== -1;
+    }
+
+    getCurrpath() {
+        switch (window.location.pathname) {
+            case '/approve':
+                return '/admin';
+            case '/':
+                return '/home';
+            default:
+                return window.location.pathname;
+        }
+    }
+
     render() {
         const nameItems = this.navItems();
         const signInText = this.createSignInLink(this.props.loggedIn);
+        const admintab = this.adminTab();
         return (
             <div className={'sksmain'}>
                 <Header/>
@@ -105,6 +172,7 @@ class SksMain extends React.Component {
                         <div id="navbarCollapse" className="collapse navbar-collapse">
                             <ul className="navbar-nav mr-auto">
                                 {nameItems}
+                                {admintab}
                             </ul>
                         </div>
                         <div className="sks-login">
