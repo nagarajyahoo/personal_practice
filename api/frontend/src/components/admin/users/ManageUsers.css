@@ -1,0 +1,25 @@
+.admin-manageusers {
+    text-align: center;
+}
+
+.admin-manageusers-users-grid {
+    margin: auto;
+}
+
+.admin-manageusers-users-grid-header {
+    text-align: left;
+    font-size: 16px;
+    font-weight: normal;
+    height: 30px;
+    color: white;
+    background-color: rgb(64, 64, 64);
+}
+
+.admin-manageusers-users-grid-value {
+    text-align: left;
+    font-size: 13px;
+}
+
+.admin-manageusers-users-grid-select {
+    padding-left: auto;
+}

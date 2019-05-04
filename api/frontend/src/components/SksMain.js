@@ -14,6 +14,7 @@ import Register from "./register/Register";
 import * as AuthActions from "../model/actions/LoginActions";
 import {connect} from "react-redux";
 import * as httputils from '../utils/HttpUtils';
+import ManageUsers from "./admin/users/ManageUsers";
 
 class SksMain extends React.Component {
     constructor(context) {
@@ -53,12 +54,12 @@ class SksMain extends React.Component {
                 {
                     id: 'a-1',
                     name: 'Members',
-                    link: '/members'
+                    link: '/managemembers'
                 },
                 {
                     id: 'a-2',
                     name: 'Payments',
-                    link: '/payments'
+                    link: '/managepayments'
                 },
                 {
                     id: 'a-3',
@@ -192,6 +193,7 @@ class SksMain extends React.Component {
                         <Route exact path={'/events'} component={events}/>
                         <Route exact path={'/contactus'} component={ContactUs}/>
                         <Route exact path={'/register'} component={Register}/>
+                        <Route exact path={'/managemembers'} component={ManageUsers}/>
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
