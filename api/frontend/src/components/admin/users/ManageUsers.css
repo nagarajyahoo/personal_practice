@@ -1,9 +1,12 @@
 .admin-manageusers {
+    padding-top: 10px;
     text-align: center;
 }
 
 .admin-manageusers-users-grid {
     margin: auto;
+    width: 1450px;
+    height: 500px;
 }
 
 .admin-manageusers-users-grid-header {
@@ -22,4 +25,18 @@
 
 .admin-manageusers-users-grid-select {
     padding-left: auto;
+}
+
+.admin-manageusers .row {
+    margin-bottom: 10px;
+}
+
+.admin-manageusers .search {
+    width: 80%;
+    margin: auto;
+}
+
+.admin-manageusers .search button{
+    float: left;
+    margin-right: 20px;
 }

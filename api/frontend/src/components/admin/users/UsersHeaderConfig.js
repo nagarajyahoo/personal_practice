@@ -5,7 +5,8 @@ export const manageUserHeaders = [
         width: 50,
         headerClass: 'admin-manageusers-users-grid-header admin-manageusers-users-grid-select',
         cellClass: 'admin-manageusers-users-grid-value',
-        checkboxSelection: true
+        checkboxSelection: true,
+        onChange: (e) => console.log('Selected ', e)
     },
     {
         headerName: "First Name",
@@ -45,6 +46,20 @@ export const manageUserHeaders = [
         filter: true
     }, {
         headerName: "Post Code",
+        headerClass: 'admin-manageusers-users-grid-header',
+        cellClass: 'admin-manageusers-users-grid-value',
+        field: "price",
+        sortable: true,
+        filter: true
+    }, {
+        headerName: "Address 1",
+        headerClass: 'admin-manageusers-users-grid-header',
+        cellClass: 'admin-manageusers-users-grid-value',
+        field: "price",
+        sortable: true,
+        filter: true
+    }, {
+        headerName: "Address 2",
         headerClass: 'admin-manageusers-users-grid-header',
         cellClass: 'admin-manageusers-users-grid-value',
         field: "price",
