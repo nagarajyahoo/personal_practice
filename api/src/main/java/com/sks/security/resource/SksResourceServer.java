@@ -2,6 +2,9 @@ package com.sks.security.resource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -39,5 +42,20 @@ public class SksResourceServer extends ResourceServerConfigurerAdapter {
         defaultTokenServices.setSupportRefreshToken(true);
         defaultTokenServices.setTokenEnhancer(tokenEnhancer());
         return defaultTokenServices;
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        //@formatter:off
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers("/public/**").permitAll()
+                .antMatchers("/api/**").authenticated()
+            .and()
+                .cors()
+            .and()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
+        //@formatter:on
     }
 }

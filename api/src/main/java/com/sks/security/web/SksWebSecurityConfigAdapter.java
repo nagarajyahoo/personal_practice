@@ -56,7 +56,6 @@ public class SksWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/public/**").permitAll()
                 .antMatchers("/oauth/**").anonymous()
-                .antMatchers("/api/**").permitAll()
             .and()
                 .cors()
             .and()
