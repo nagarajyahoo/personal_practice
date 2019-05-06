@@ -3,7 +3,6 @@ package com.sks.security.auth;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -31,6 +30,8 @@ public class SksAuthServer extends AuthorizationServerConfigurerAdapter {
     private String clientRedirectUri;
     @Value("${sks.web.client.token.timeout}")
     private int clientTokenTimeout;
+    @Value("${sks.security.signing-key}")
+    private String signingKey;
     private final AuthenticationManager authenticationManager;
     private final SksUserDetailsService userDetailsService;
 
@@ -88,13 +89,11 @@ public class SksAuthServer extends AuthorizationServerConfigurerAdapter {
 
     private JwtAccessTokenConverter tokenEnhancer() {
         JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-        tokenConverter.setSigningKey("abcdefgh");
+        tokenConverter.setSigningKey(signingKey);
         return tokenConverter;
     }
 
-    @Bean
-    @Primary
-    public DefaultTokenServices tokenServices() {
+    private DefaultTokenServices tokenServices() {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setSupportRefreshToken(true);

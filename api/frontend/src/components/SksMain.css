@@ -35,10 +35,12 @@ body {
     border-radius: 50%;
     padding-top: 5%;
 }
+
 .fa-facebook-f {
     background: #3b5998;
     color: white;
 }
+
 .fa-youtube-square {
     background: #bb0000;
     color: white;
@@ -72,6 +74,54 @@ body {
     color: #ff821f;
 }
 
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ff821f;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover > a:after {
+    border-left-color: black;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
 .sks-login ul {
     list-style-type: none;
     margin-top: 10px;
@@ -96,7 +146,7 @@ body {
     display: inline;
 }
 
-.sks-login ul li a:hover{
+.sks-login ul li a:hover {
     color: #ff821f;
 }
 
@@ -126,10 +176,12 @@ body {
 #authors img {
     margin-top: -50px;
 }
+
 #authors .card:hover {
     background: #3292a6;
     color: white;
 }
+
 #authors .fab {
     color: white;
 }
@@ -138,6 +190,7 @@ body {
     #showcase {
         min-height: 500px;
     }
+
     #showcase h1 {
         font-size: 4rem;
     }

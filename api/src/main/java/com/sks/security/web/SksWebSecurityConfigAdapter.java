@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import javax.inject.Inject;
 
@@ -51,19 +52,16 @@ public class SksWebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         //@formatter:off
-        http
-                .authorizeRequests()
-                        .antMatchers(HttpMethod.OPTIONS).permitAll()
-                        .antMatchers("/api/**").authenticated()
-                        .antMatchers("/public/**").permitAll()
-                        .antMatchers("/oauth/**").anonymous()
-                        .antMatchers("/register").anonymous()
-                        .antMatchers("/register").permitAll()
-                 .and()
-                    .cors()
-                .and()
-                    .csrf().disable()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers("/public/**").permitAll()
+                .antMatchers("/oauth/**").anonymous()
+                .antMatchers("/api/**").permitAll()
+            .and()
+                .cors()
+            .and()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
         //@formatter:on
     }
 }

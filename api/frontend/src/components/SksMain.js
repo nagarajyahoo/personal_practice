@@ -57,14 +57,26 @@ class SksMain extends React.Component {
                     link: '/managemembers'
                 },
                 {
-                    id: 'a-2',
-                    name: 'Payments',
-                    link: '/managepayments'
-                },
-                {
                     id: 'a-3',
                     name: 'Events',
                     link: '/manageevents'
+                },
+                {
+                    id: 'a-2',
+                    name: 'Payments',
+                    link: '/managepayments',
+                    submenus: [
+                        {
+                            id: 'a-2-1',
+                            name: 'Payments Report',
+                            link: '/paymentreports'
+                        },
+                        {
+                            id: 'a-2-2',
+                            name: 'Add/Refund Payment',
+                            link: '/addpayment'
+                        }
+                    ]
                 }
             ]
         };
@@ -94,33 +106,68 @@ class SksMain extends React.Component {
         this.props.logout();
     }
 
+    createSubMenus(subMenuItems) {
+        return subMenuItems.map(subMenu => {
+            return (
+                <li key={subMenu.id}>
+                    <Link
+                        key={subMenu.id}
+                        onClick={() => this.selectTab(subMenu.id)}
+                        className={'dropdown-item'}
+                        to={subMenu.link}>
+                        {subMenu.name}
+                    </Link>
+                </li>
+            )
+        });
+    }
+
     adminTab() {
         const currpath = this.getCurrpath();
-        const adminLinks = this.state.adminItems.map(adminItem => {
-            return (
-                <Link
-                    key={adminItem.id}
-                    onClick={() => this.selectTab(adminItem.id)}
-                    className={currpath === adminItem.link ? 'dropdown-item active' : 'dropdown-item'}
-                    to={adminItem.link}>
-                    {adminItem.name}
-                </Link>
-            )
+        const adminLinks = this.state.adminItems.map((adminItem, index) => {
+            const menu = adminItem.submenus ?
+                <li key={index}
+                    className={'dropdown-submenu'}>
+                    <Link
+                        key={index}
+                        id={"paymentDropdown"}
+                        className={'dropdown dropdown-item'}
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        {adminItem.name}
+                    </Link>
+                    <ul className="dropdown-menu" aria-labelledby="paymentDropdown">
+                        {this.createSubMenus(adminItem.submenus)}
+                    </ul>
+                </li> :
+                <li key={index}>
+                    <Link
+                        key={adminItem.id}
+                        onClick={() => this.selectTab(adminItem.id)}
+                        className={currpath === adminItem.link ? 'dropdown-item active' : 'dropdown-item'}
+                        to={adminItem.link}>
+                        {adminItem.name}
+                    </Link>
+                </li>;
+            return (menu);
         });
         return (
             <li className="nav-item dropdown">
                 <Link className={this.isAdminPath() ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
                       to="#"
-                      id="navbarDropdown"
+                      id="adminDropDown"
                       role="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
-                      aria-expanded="false">
+                      aria-expanded="true">
                     Admin
                 </Link>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul className="dropdown-menu" aria-labelledby="adminDropDown">
                     {adminLinks}
-                </div>
+                </ul>
             </li>
         );
     }
@@ -205,7 +252,7 @@ class SksMain extends React.Component {
     }
 
     createSignInLink(loggedIn) {
-        return (loggedIn || httputils.isLoggedIn())?
+        return (loggedIn || httputils.isLoggedIn()) ?
             <span onClick={() => this.signOut()}>Sign Out</span> :
             <span onClick={() => this.toggleSignIn(true)}>Sign In</span>;
     }
