@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.net.ServerSocket;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,7 @@ public class SksUsersDB {
     private Timestamp createTime;
     private Timestamp updateTime;
     private UserDetailsDB userDetails;
+    private List<SksRolesDB> roles;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -89,6 +91,16 @@ public class SksUsersDB {
 
     public void setUserDetails(UserDetailsDB userDetails) {
         this.userDetails = userDetails;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "sks_users_id"))
+    public List<SksRolesDB> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<SksRolesDB> roles) {
+        this.roles = roles;
     }
 
     @Override

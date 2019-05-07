@@ -15,7 +15,7 @@
     <changeSet author="Nagaraj" id="2">
         <sqlFile dbms="mysql"
                  encoding="utf8"
-                 path="./100/events.sql"
+                 path="./100/users.sql"
                  relativeToChangelogFile="true"
                  stripComments="true"/>
     </changeSet>
@@ -23,7 +23,31 @@
     <changeSet author="Nagaraj" id="3">
         <sqlFile dbms="mysql"
                  encoding="utf8"
+                 path="./100/events.sql"
+                 relativeToChangelogFile="true"
+                 stripComments="true"/>
+    </changeSet>
+
+    <changeSet author="Nagaraj" id="4">
+        <sqlFile dbms="mysql"
+                 encoding="utf8"
                  path="./100/albums.sql"
+                 relativeToChangelogFile="true"
+                 stripComments="true"/>
+    </changeSet>
+
+    <changeSet author="Nagaraj" id="5">
+        <sqlFile dbms="mysql"
+                 encoding="utf8"
+                 path="./100/roles.sql"
+                 relativeToChangelogFile="true"
+                 stripComments="true"/>
+    </changeSet>
+
+    <changeSet author="Nagaraj" id="6">
+        <sqlFile dbms="mysql"
+                 encoding="utf8"
+                 path="./100/user_roles.sql"
                  relativeToChangelogFile="true"
                  stripComments="true"/>
     </changeSet>
