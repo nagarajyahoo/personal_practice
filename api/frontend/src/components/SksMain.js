@@ -122,54 +122,58 @@ class SksMain extends React.Component {
         });
     }
 
-    adminTab() {
-        const currpath = this.getCurrpath();
-        const adminLinks = this.state.adminItems.map((adminItem, index) => {
-            const menu = adminItem.submenus ?
-                <li key={index}
-                    className={'dropdown-submenu'}>
-                    <Link
-                        key={index}
-                        id={"paymentDropdown"}
-                        className={'dropdown dropdown-item'}
-                        to="#"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        {adminItem.name}
+    adminTab(isAdmin) {
+        const isAdminUser = isAdmin || httputils.isAdminUser();
+        if(isAdminUser) {
+            const currpath = this.getCurrpath();
+            const adminLinks = this.state.adminItems.map((adminItem, index) => {
+                const menu = adminItem.submenus ?
+                    <li key={index}
+                        className={'dropdown-submenu'}>
+                        <Link
+                            key={index}
+                            id={"paymentDropdown"}
+                            className={'dropdown dropdown-item'}
+                            to="#"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {adminItem.name}
+                        </Link>
+                        <ul className="dropdown-menu" aria-labelledby="paymentDropdown">
+                            {this.createSubMenus(adminItem.submenus)}
+                        </ul>
+                    </li> :
+                    <li key={index}>
+                        <Link
+                            key={adminItem.id}
+                            onClick={() => this.selectTab(adminItem.id)}
+                            className={currpath === adminItem.link ? 'dropdown-item active' : 'dropdown-item'}
+                            to={adminItem.link}>
+                            {adminItem.name}
+                        </Link>
+                    </li>;
+                return (menu);
+            });
+
+            return (
+                <li className="nav-item dropdown">
+                    <Link className={this.isAdminPath() ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
+                          to="#"
+                          id="adminDropDown"
+                          role="button"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="true">
+                        Admin
                     </Link>
-                    <ul className="dropdown-menu" aria-labelledby="paymentDropdown">
-                        {this.createSubMenus(adminItem.submenus)}
+                    <ul className="dropdown-menu" aria-labelledby="adminDropDown">
+                        {adminLinks}
                     </ul>
-                </li> :
-                <li key={index}>
-                    <Link
-                        key={adminItem.id}
-                        onClick={() => this.selectTab(adminItem.id)}
-                        className={currpath === adminItem.link ? 'dropdown-item active' : 'dropdown-item'}
-                        to={adminItem.link}>
-                        {adminItem.name}
-                    </Link>
-                </li>;
-            return (menu);
-        });
-        return (
-            <li className="nav-item dropdown">
-                <Link className={this.isAdminPath() ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
-                      to="#"
-                      id="adminDropDown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="true">
-                    Admin
-                </Link>
-                <ul className="dropdown-menu" aria-labelledby="adminDropDown">
-                    {adminLinks}
-                </ul>
-            </li>
-        );
+                </li>
+            );
+        }
     }
 
     navItems() {
@@ -205,7 +209,7 @@ class SksMain extends React.Component {
     render() {
         const nameItems = this.navItems();
         const signInText = this.createSignInLink(this.props.loggedIn);
-        const admintab = this.adminTab();
+        const admintab = this.adminTab(this.props.isAdmin);
         return (
             <div className={'sksmain'}>
                 <Header/>
@@ -260,7 +264,8 @@ class SksMain extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        loggedIn: state.login.loggedIn
+        loggedIn: state.login.loggedIn,
+        isAdmin: state.login.admin
     }
 };
 

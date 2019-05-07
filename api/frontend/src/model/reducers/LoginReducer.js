@@ -1,12 +1,12 @@
 import * as Actions from '../actions/LoginActions';
-import {LOGOUT_SUCCESSFUL} from "../actions/LoginActions";
 
 const initialState = {
     token: null,
     userId: null,
     error: null,
     loggedIn: false,
-    processing: false
+    processing: false,
+    admin: false
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -33,7 +33,12 @@ const loginReducer = (state = initialState, action) => {
                 processing: false,
                 error: action.data
             };
-        case LOGOUT_SUCCESSFUL:
+        case Actions.GOT_ROLE_SUCCESSFUL:
+            return {
+                ...state,
+                admin: true
+            };
+        case Actions.LOGOUT_SUCCESSFUL:
             return initialState;
         default:
             return state;

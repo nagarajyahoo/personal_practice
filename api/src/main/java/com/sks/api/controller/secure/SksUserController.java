@@ -20,7 +20,7 @@ public class SksUserController {
         this.usersService = usersService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/roles")
     @Produces(MediaType.APPLICATION_JSON)
     public ResponseEntity getUserRole() {
         return ResponseEntity.ok(usersService.getRoles());

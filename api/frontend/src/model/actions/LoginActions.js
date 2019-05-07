@@ -1,10 +1,14 @@
+import * as httputils from '../../utils/HttpUtils';
+
 export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL';
 export const LOGOUT_SUCCESSFUL = 'LOGOUT_SUCCESSFUL';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const PROCESSING = 'PROCESSING';
+export const GOT_ROLE_SUCCESSFUL = 'GOT_ROLE_SUCCESSFUL';
 
 const ACCESS_TOKEN_KEY = 'access_token';
 const REFRESH_TOKEN_KEY = 'refresh_token';
+const ADMIN = 'admin';
 
 const loginSuccessful = (token) => {
     localStorage.setItem(ACCESS_TOKEN_KEY, token[ACCESS_TOKEN_KEY]);
@@ -23,7 +27,32 @@ const loginFailure = (reason) => {
 export const logout = () => {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     localStorage.removeItem(REFRESH_TOKEN_KEY);
+    localStorage.removeItem(ADMIN);
     return {type: LOGOUT_SUCCESSFUL}
+};
+
+export const getUserRole = (token) => {
+    return (dispatch => {
+        fetch('/api/sksusers/roles', {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Authorization": "Bearer " + token[ACCESS_TOKEN_KEY]
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                res.json().then(data => {
+                    if (data.roles.indexOf(ADMIN) > -1) {
+                        localStorage.setItem(ADMIN, "1");
+                        dispatch({
+                            type: GOT_ROLE_SUCCESSFUL,
+                            data: ADMIN
+                        });
+                    }
+                })
+            }
+        });
+    });
 };
 
 export const login = (username, password) => {
@@ -42,7 +71,7 @@ export const login = (username, password) => {
             formData.append(key, jsonData[key]);
         }
 
-        return fetch('http://localhost:8080/oauth/token', {
+        return fetch('/oauth/token', {
             method: "POST",
             mode: "cors",
             credentials: 'include',
@@ -55,6 +84,7 @@ export const login = (username, password) => {
                 response.json()
                     .then(data => {
                         dispatch(loginSuccessful(data));
+                        dispatch(getUserRole(data));
                     }).catch(err => {
                     dispatch(loginFailure('Login failed'))
                 })
