@@ -27,7 +27,7 @@ export default class Header extends React.Component {
                         </div>
                         <div className="col-md-3 align-self-center">
                             <div className="container text-right">
-                                <div className="row d-flex">
+                                <div className="row">
                                     <div className="col">
                                         <i className="fab fa-facebook-f fa-lg"></i>&nbsp;&nbsp;
                                         <i className="fab fa-youtube-square fa-lg"></i>

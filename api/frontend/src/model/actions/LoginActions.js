@@ -31,6 +31,27 @@ export const logout = () => {
     return {type: LOGOUT_SUCCESSFUL}
 };
 
+export const checkUserRole = () => {
+    return (dispatch => {
+        if(httputils.isLoggedIn()) {
+            httputils.get('/api/sksusers/roles')
+                .then(res => {
+                    if (res.status === 200) {
+                        res.json()
+                            .then(data => {
+                                if (data.roles.indexOf(ADMIN) > -1) {
+                                    dispatch({
+                                        type: GOT_ROLE_SUCCESSFUL,
+                                        data: ADMIN
+                                    });
+                                }
+                            });
+                    }
+                });
+        }
+    })
+};
+
 export const getUserRole = (token) => {
     return (dispatch => {
         fetch('/api/sksusers/roles', {
@@ -43,7 +64,6 @@ export const getUserRole = (token) => {
             if (res.status === 200) {
                 res.json().then(data => {
                     if (data.roles.indexOf(ADMIN) > -1) {
-                        localStorage.setItem(ADMIN, "1");
                         dispatch({
                             type: GOT_ROLE_SUCCESSFUL,
                             data: ADMIN

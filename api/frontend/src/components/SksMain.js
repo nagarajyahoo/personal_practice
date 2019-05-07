@@ -89,6 +89,10 @@ class SksMain extends React.Component {
         this.isAdminPath = this.isAdminPath.bind(this);
     }
 
+    componentDidMount() {
+        this.props.checkUserRole();
+    }
+
     toggleSignIn(display) {
         this.setState({
             displaySignIn: display
@@ -123,8 +127,7 @@ class SksMain extends React.Component {
     }
 
     adminTab(isAdmin) {
-        const isAdminUser = isAdmin || httputils.isAdminUser();
-        if(isAdminUser) {
+        if (isAdmin) {
             const currpath = this.getCurrpath();
             const adminLinks = this.state.adminItems.map((adminItem, index) => {
                 const menu = adminItem.submenus ?
@@ -159,13 +162,14 @@ class SksMain extends React.Component {
 
             return (
                 <li className="nav-item dropdown">
-                    <Link className={this.isAdminPath() ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
-                          to="#"
-                          id="adminDropDown"
-                          role="button"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="true">
+                    <Link
+                        className={this.isAdminPath() ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
+                        to="#"
+                        id="adminDropDown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="true">
                         Admin
                     </Link>
                     <ul className="dropdown-menu" aria-labelledby="adminDropDown">
@@ -271,7 +275,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logout: () => dispatch(AuthActions.logout())
+        logout: () => dispatch(AuthActions.logout()),
+        checkUserRole: () => dispatch(AuthActions.checkUserRole())
     }
 };
 

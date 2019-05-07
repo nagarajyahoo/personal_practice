@@ -1,6 +1,5 @@
 const serverUrl = 'http://localhost:8080';
 const ACCESS_TOKEN_KEY = 'access_token';
-const ADMIN = 'admin';
 
 export const get = (url) => {
     const token = getToken();
@@ -60,9 +59,5 @@ export const isLoggedIn = () => {
 
 const getToken = () => {
     return localStorage.getItem(ACCESS_TOKEN_KEY);
-};
-
-export const isAdminUser = () => {
-    return localStorage.getItem(ADMIN) === '1';
 };
 
