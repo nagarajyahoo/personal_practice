@@ -6,6 +6,7 @@
     <modules>
         <module>api</module>
         <module>dao</module>
+        <module>skssecurity</module>
         <!--<module>database</module>-->
     </modules>
     <groupId>com.sks</groupId>
