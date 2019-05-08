@@ -14,7 +14,9 @@ import Register from "./register/Register";
 import * as AuthActions from "../model/actions/LoginActions";
 import {connect} from "react-redux";
 import * as httputils from '../utils/HttpUtils';
+import * as tabutils from '../utils/TabUtils';
 import ManageUsers from "./admin/users/ManageUsers";
+import {isSubMenuPath} from "../utils/TabUtils";
 
 class SksMain extends React.Component {
     constructor(context) {
@@ -86,7 +88,6 @@ class SksMain extends React.Component {
         this.createSignInLink = this.createSignInLink.bind(this);
         this.signOut = this.signOut.bind(this);
         this.adminTab = this.adminTab.bind(this);
-        this.isAdminPath = this.isAdminPath.bind(this);
     }
 
     componentDidMount() {
@@ -129,41 +130,12 @@ class SksMain extends React.Component {
     adminTab(isAdmin) {
         if (isAdmin) {
             const currpath = this.getCurrpath();
-            const adminLinks = this.state.adminItems.map((adminItem, index) => {
-                const menu = adminItem.submenus ?
-                    <li key={index}
-                        className={'dropdown-submenu'}>
-                        <Link
-                            key={index}
-                            id={"paymentDropdown"}
-                            className={'dropdown dropdown-item'}
-                            to="#"
-                            role="button"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                            {adminItem.name}
-                        </Link>
-                        <ul className="dropdown-menu" aria-labelledby="paymentDropdown">
-                            {this.createSubMenus(adminItem.submenus)}
-                        </ul>
-                    </li> :
-                    <li key={index}>
-                        <Link
-                            key={adminItem.id}
-                            onClick={() => this.selectTab(adminItem.id)}
-                            className={currpath === adminItem.link ? 'dropdown-item active' : 'dropdown-item'}
-                            to={adminItem.link}>
-                            {adminItem.name}
-                        </Link>
-                    </li>;
-                return (menu);
-            });
-
+            const adminLinks = tabutils.createTabs(currpath, this.state.adminItems, this.selectTab);
+            const isSubMenuPath = tabutils.isSubMenuPath(currpath, this.state.adminItems);
             return (
                 <li className="nav-item dropdown">
                     <Link
-                        className={this.isAdminPath() ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
+                        className={isSubMenuPath ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle'}
                         to="#"
                         id="adminDropDown"
                         role="button"
@@ -192,11 +164,6 @@ class SksMain extends React.Component {
                 </li>
             );
         })
-    }
-
-    isAdminPath() {
-        return this.state.adminItems
-            .findIndex(adminItem => adminItem.link === window.location.pathname) !== -1;
     }
 
     getCurrpath() {
@@ -249,6 +216,8 @@ class SksMain extends React.Component {
                         <Route exact path={'/contactus'} component={ContactUs}/>
                         <Route exact path={'/register'} component={Register}/>
                         <Route exact path={'/managemembers'} component={ManageUsers}/>
+                        <Route exact path={'/paymentreports'} component={events}/>
+                        <Route exact path={'/addpayment'} component={events}/>
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
