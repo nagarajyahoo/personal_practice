@@ -1,4 +1,5 @@
 import React from 'react';
+import './Header.css';
 
 export default class Header extends React.Component {
     render() {
@@ -6,10 +7,10 @@ export default class Header extends React.Component {
             <header className="header-expand-md sks-header fixed-top">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3 align-self-center">
+                        <div className="col-sm-3 sks-icon">
                             <img src="favicon.ico" alt={'favicon'} className="img-fluid rounded-circle sks-logo"/>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-sm-6">
                             <div className="container text-white mt-2">
                                 <div className="row">
                                     <div className="col text-center">
@@ -25,7 +26,7 @@ export default class Header extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 align-self-center">
+                        <div className="col-sm-3 align-self-center">
                             <div className="container text-right">
                                 <div className="row">
                                     <div className="col">

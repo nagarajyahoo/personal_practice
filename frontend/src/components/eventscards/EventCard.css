@@ -1,0 +1,25 @@
+.skshome-event-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    height: 180px;
+    border: 1px solid #ff821f;
+}
+
+.skshome-event-details {
+    margin: auto;
+    font-size: 17px;
+    color: #ff821f;
+}
+
+.skshome-event-card-title.card-header {
+    height: 30px;
+    font-size: 15px;
+    padding-top: 2px;
+    font-weight: bold;
+    background-color: #ff821f;
+    color: white;
+}
+
+.skshome-event-card-body.card-body {
+    height: 100px;
+    font-size: 40px;
+}

@@ -43,7 +43,7 @@ class SksMain extends React.Component {
                 },
                 {
                     id: '4',
-                    name: 'Events',
+                    name: 'Committee',
                     link: '/events'
                 },
                 {

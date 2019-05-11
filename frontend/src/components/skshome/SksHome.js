@@ -1,5 +1,6 @@
 import React from 'react';
 import './SksHome.css';
+import EventCards from "../eventscards/EventCards";
 
 export default class SksHome extends React.Component {
     render() {
@@ -12,8 +13,9 @@ export default class SksHome extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div>
-                    Upcoming Events
+                <div className={'skshome-events-header'}>Upcoming Events</div>
+                <div className={'skshome-events-cards'}>
+                    <EventCards />
                 </div>
             </div>
         );

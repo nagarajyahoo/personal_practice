@@ -14,3 +14,15 @@
     width: 100%;
     height: 100%;
 }
+
+.skshome-events-cards {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.skshome-events-header {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500;
+}
