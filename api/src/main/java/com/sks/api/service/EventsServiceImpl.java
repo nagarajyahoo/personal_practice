@@ -1,6 +1,6 @@
 package com.sks.api.service;
 
-import com.sks.api.model.Event;
+import com.sks.api.model.EventType;
 import com.sks.api.model.Events;
 import com.sks.api.util.converter.EventsConverter;
 import com.sks.dao.EventsDao;
@@ -8,7 +8,9 @@ import com.sks.dao.beans.EventsDB;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class EventsServiceImpl implements EventsService {
@@ -23,11 +25,22 @@ public class EventsServiceImpl implements EventsService {
     }
 
     @Override
-    public Events getEvents() {
-        Iterable<EventsDB> allEvents = eventsDao.findAll();
-        List<Event> eventList = converter.convertToEvents(allEvents);
+    public Events getEvents(String eventType) {
         final Events events = new Events();
-        events.setEvents(eventList);
+        Iterable<EventsDB> allEvents;
+        final EventType eventTypeEnum = EventType.fromString(eventType);
+        switch (eventTypeEnum) {
+            case ALL:
+                allEvents = eventsDao.findAll();
+                break;
+            case UPCOMING:
+                Timestamp now = new Timestamp(new Date().getTime());
+                allEvents = eventsDao.getEventsByDate(now);
+                break;
+            default:
+                allEvents = new ArrayList<>();
+        }
+        events.setEvents(converter.convertToEvents(allEvents));
         return events;
     }
 }

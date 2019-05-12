@@ -15,7 +15,7 @@ public class EventsConverter {
         return events;
     }
 
-    public Event convertToEvent(EventsDB dbEvent) {
+    private Event convertToEvent(EventsDB dbEvent) {
         Event event = new Event();
         event.setId(dbEvent.getId());
         event.setName(dbEvent.getName());

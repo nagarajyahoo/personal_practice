@@ -12,17 +12,20 @@ import java.util.List;
 @Service
 public class CommitteeServiceImpl implements CommitteeService {
     private final CommitteeDao committeeDao;
+    private final CommitteeConverter committeeConverter;
 
     @Inject
-    public CommitteeServiceImpl(CommitteeDao committeeDao) {
+    public CommitteeServiceImpl(final CommitteeDao committeeDao,
+                                final CommitteeConverter committeeConverter) {
         this.committeeDao = committeeDao;
+        this.committeeConverter = committeeConverter;
     }
 
     @Override
     public Committee getCommittee() {
         final Committee committee = new Committee();
         List<CommitteeDB> dbCommittee = committeeDao.getCommitteeMembers();
-        committee.setMembers(CommitteeConverter.convertToJsonCommittee(dbCommittee));
+        committee.setMembers(committeeConverter.convertToJsonCommittee(dbCommittee));
         return committee;
     }
 }
