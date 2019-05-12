@@ -17,6 +17,11 @@
     width: 80%;
 }
 
+.sks-about-founded-details {
+    margin: auto;
+    text-align: center;
+}
+
 .sks-about-mission-header {
     font-size: 23px;
     font-weight: 500;

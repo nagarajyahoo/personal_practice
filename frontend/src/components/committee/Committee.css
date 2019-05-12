@@ -1,0 +1,18 @@
+.sks-committee {
+
+}
+
+.sks-committee-inner {
+    width: 90%;
+    margin: auto;
+}
+
+.member-photo {
+    margin-left: -100%;
+}
+.member-details {
+    margin-left: 5%;
+}
+.member-profile {
+    margin-right: -10%;
+}

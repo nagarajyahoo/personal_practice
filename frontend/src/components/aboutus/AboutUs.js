@@ -13,10 +13,14 @@ const aboutUs = () => {
                     <Col>
                         <div className={'sks-about-details'}>
                             <p className="lead pb-4 pt-4">
-                                Scottish Karnataka Sangha is a socio-cultural organisation formed by the people of Karnataka
+                                Scottish Karnataka Sangha is a socio-cultural and non-profit organisation formed by the people of Karnataka
                                 (Indian) origin residing in various cities of Scotland, to promote the kannada - culture
                                 tradition and values.
                             </p>
+                        </div>
+                        <div className={'sks-about-mission'}>
+                            <div className={'sks-about-mission-header'}>Founded In</div>
+                            <div className={'sks-about-founded-details lead'}>November 2002</div>
                         </div>
                         <div className={'sks-about-mission'}>
                             <div className={'sks-about-mission-header'}>Our Mission</div>
