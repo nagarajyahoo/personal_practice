@@ -3,7 +3,6 @@ package com.sks.api.model;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum EventType {
     ALL("all"),
