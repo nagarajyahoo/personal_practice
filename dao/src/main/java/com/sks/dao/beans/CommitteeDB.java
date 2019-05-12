@@ -8,9 +8,13 @@ import java.util.Objects;
 @Table(name = "committee", schema = "sksmain", catalog = "")
 public class CommitteeDB {
     private String description;
+    private String imageUrl;
+    private String committeeRole;
+    private int displayOrder;
     private Timestamp createTime;
     private Timestamp updateTime;
     private int sksUsersId;
+    private SksUsersDB sksUser;
 
     @Basic
     @Column(name = "description", nullable = false, length = -1)
@@ -50,6 +54,47 @@ public class CommitteeDB {
 
     public void setSksUsersId(int sksUsersId) {
         this.sksUsersId = sksUsersId;
+    }
+
+    @Basic
+    @Column(name = "image_url", nullable = true)
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    @Basic
+    @Column(name = "display_order", nullable = false)
+    public int getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(int displayOrder) {
+        this.displayOrder = displayOrder;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "sks_users_id")
+    @MapsId
+    public SksUsersDB getSksUser() {
+        return sksUser;
+    }
+
+    public void setSksUser(SksUsersDB sksUser) {
+        this.sksUser = sksUser;
+    }
+
+    @Basic
+    @Column(name = "committee_role", nullable = false)
+    public String getCommitteeRole() {
+        return committeeRole;
+    }
+
+    public void setCommitteeRole(String committeeRole) {
+        this.committeeRole = committeeRole;
     }
 
     @Override

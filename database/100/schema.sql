@@ -170,10 +170,13 @@ ENGINE = InnoDB;
 -- Table sksmain.committee
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS sksmain.committee (
+  sks_users_id INT NOT NULL,
+  committee_role VARCHAR(200) NOT NULL,
   description TEXT NOT NULL,
+  image_url TEXT NULL,
+  display_order INT NOT NULL,
   create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   update_time TIMESTAMP NULL,
-  sks_users_id INT NOT NULL,
   PRIMARY KEY (sks_users_id),
   CONSTRAINT fk_committee_sks_users1
     FOREIGN KEY (sks_users_id)
@@ -224,4 +227,3 @@ CREATE TABLE IF NOT EXISTS sksmain.sks_album_photos (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-

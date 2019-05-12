@@ -1,1 +1,2 @@
 insert into sksmain.sks_users (id, email, password, locked) values (1, 'nagaraj.mr27@gmail.com', '$2a$10$y1wcheTV.QhacbM9bPvHluvxkw7fYL2imp66dlYI4gX11UhdgtDki', 0);
+insert into sksmain.sks_users (id, email, password, locked) values (2, 'hemalathahb21@gmail.com', '$2a$10$y1wcheTV.QhacbM9bPvHluvxkw7fYL2imp66dlYI4gX11UhdgtDki', 0);

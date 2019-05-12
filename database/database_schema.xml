@@ -52,4 +52,12 @@
                  stripComments="true"/>
     </changeSet>
 
+    <changeSet author="Nagaraj" id="7">
+        <sqlFile dbms="mysql"
+                 encoding="utf8"
+                 path="./100/committee.sql"
+                 relativeToChangelogFile="true"
+                 stripComments="true"/>
+    </changeSet>
+
 </databaseChangeLog>
