@@ -1,13 +1,26 @@
 .skshome-event-card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    height: 180px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    min-height: 180px;
     border: 1px solid #ff821f;
 }
 
 .skshome-event-details {
+    border: none;
+}
+
+.skshome-event-details .card-body {
+    margin: 0 auto;
+    padding: 0;
+    font-size: 17px;
+    color: #404040;
+    text-align: left;
+}
+
+.skshome-event-details .card-footer {
     margin: auto;
     font-size: 17px;
-    color: #ff821f;
+    border: none;
+    background-color: white;
 }
 
 .skshome-event-card-title.card-header {
@@ -20,6 +33,6 @@
 }
 
 .skshome-event-card-body.card-body {
-    height: 100px;
+    min-height: 100px;
     font-size: 40px;
 }

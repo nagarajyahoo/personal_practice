@@ -5,3 +5,36 @@
     padding-left: 20%;
     padding-right: 20%;
 }
+
+.sks-about-mission {
+    margin: auto;
+    text-align: left;
+    width: 80%;
+}
+
+.sks-about-mission-header {
+    font-size: 23px;
+    font-weight: 500;
+    color: #ff821f;
+    margin: 20px auto 20px auto;
+    text-align: center;
+    border-bottom: 2px solid #ff821f;
+    width: 10%;
+}
+
+.sks-about-mission-details ul {
+    list-style: none; /* Remove default bullets */
+}
+
+.sks-about-mission-details ul li {
+    margin-bottom: 10px;
+}
+
+.sks-about-mission-details ul li::before {
+    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: #ff821f; /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+}

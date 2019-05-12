@@ -21,17 +21,18 @@ export default class ContactUs extends React.Component {
                 <TitleSection title={'WE ALWAYS WELCOME YOUR QUERIES, CONTACT US'}/>
                 <div className="sks-contact-us-inner">
                     <Row>
-                        <Col sm={10} md={4} lg={4} className={'card mr-4 ml-4'}>
+                        <Col sm={10} md={4} lg={4} className={'card mr-4 ml-4 pt-4'}>
                             <div className={'card-body'}>
                                 <h4>Get In Touch</h4>
                                 <p className="text-muted">
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque
                                     rerum, laborum ab eos id optio!
                                 </p>
-                                <h5>Address</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
                                 <h5>Email</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
+                                <p>
+                                    <a href="mailto:scottishkarnatakasangha@gmail.com?Subject=ContactUs%20Query"
+                                       target="_top">scottishkarnatakasangha@gmail.com</a>
+                                </p>
                                 <h5>Telephone</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>

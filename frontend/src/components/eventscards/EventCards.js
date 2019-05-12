@@ -32,7 +32,7 @@ export default class EventCards extends React.Component {
         return (
             <div className={'skshome-eventcards'}>
                 <ItemsCarousel
-                    width={'600'}
+                    minWidth={'600'}
                     // Carousel configurations
                     numberOfCards={3}
                     gutter={12}

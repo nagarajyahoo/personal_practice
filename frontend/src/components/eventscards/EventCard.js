@@ -1,9 +1,10 @@
 import React from "react";
-import {Card, CardBody} from "reactstrap";
+import {Card, CardBody, Button} from "reactstrap";
 import Row from "reactstrap/es/Row";
 import Col from "reactstrap/es/Col";
 import CardHeader from "reactstrap/es/CardHeader";
 import './EventCard.css';
+import CardFooter from "reactstrap/es/CardFooter";
 
 export default class EventCard extends React.Component {
     render() {
@@ -22,7 +23,14 @@ export default class EventCard extends React.Component {
                             </Card>
                         </Col>
                         <Col sm={7}>
-                            <div className={'skshome-event-details'}>Lorem ipsum dolor sit amet.</div>
+                            <Card className={'skshome-event-details'}>
+                                <CardBody>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, voluptatem.
+                                </CardBody>
+                                <CardFooter>
+                                    <Button outline color={'primary'} size={'sm'}>More Info</Button>
+                                </CardFooter>
+                            </Card>
                         </Col>
                     </Row>
                 </CardBody>
