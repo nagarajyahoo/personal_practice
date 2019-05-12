@@ -30,8 +30,13 @@ export default class Header extends React.Component {
                             <div className="container text-right">
                                 <div className="row">
                                     <div className="col">
-                                        <i className="fab fa-facebook-f fa-lg"></i>&nbsp;&nbsp;
-                                        <i className="fab fa-youtube-square fa-lg"></i>
+                                        <i className="fab fa-facebook-f fa-lg sks-social-icon"
+                                           onClick={() => window.open('https://www.facebook.com/ScottishKarnatakaSangha/', '_blank')}>
+                                        </i>
+                                        &nbsp;&nbsp;
+                                        <i className="fab fa-youtube-square fa-lg sks-social-icon"
+                                           onClick={() => window.open('https://www.youtube.com/user/scottkarnatakasangha', '_blank')}>
+                                        </i>
                                     </div>
                                 </div>
                             </div>

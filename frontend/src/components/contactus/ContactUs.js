@@ -39,7 +39,7 @@ export default class ContactUs extends React.Component {
                         </Col>
                         <Col sm={12} md={7} lg={7} className={'card p-4'}>
                             <div className={'card-body'}>
-                                <h3>Please fill out this form</h3>
+                                <h4>Please fill out this form</h4>
                                 <form>
                                     <div className="input-group input-group-lg mb-3">
                                         <div className="input-group-prepend">

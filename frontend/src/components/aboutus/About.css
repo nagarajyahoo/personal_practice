@@ -1,6 +1,11 @@
 .sks-about {
 }
 
+.sks-about-inner {
+    width: 95%;
+    margin: auto;
+}
+
 .sks-about-details {
     padding-left: 20%;
     padding-right: 20%;

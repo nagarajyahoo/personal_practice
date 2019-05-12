@@ -6,6 +6,7 @@
     background-position-y: -70px;
     width: 100%;
 }
+
 #showcase .primary-overlay {
     background: rgba(43, 24, 12, 0.432);
     position: absolute;
@@ -25,5 +26,6 @@
     margin: 30px auto 20px;
     font-size: 30px;
     font-weight: 500;
+    color: rgb(64, 64, 64);
     border-bottom: 3px solid #ff821f;
 }

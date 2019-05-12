@@ -6,7 +6,7 @@ import Header from "./header/Header";
 import {Link} from "react-router-dom";
 import AboutUs from "./aboutus/AboutUs";
 import ContactUs from "./contactus/ContactUs";
-import {events} from "./events/Events";
+import Committee from "./committee/Committee";
 import * as SksFooter from './footer/SksFooter'
 import Login from "./login/Login";
 import Gallery from "./galleries/Gallery";
@@ -44,7 +44,7 @@ class SksMain extends React.Component {
                 {
                     id: '4',
                     name: 'Committee',
-                    link: '/events'
+                    link: '/committee'
                 },
                 {
                     id: '5',
@@ -212,12 +212,12 @@ class SksMain extends React.Component {
                         <Route exact path={'/home'} component={SksHome}/>
                         <Route exact path={'/aboutus'} component={AboutUs}/>
                         <Route exact path={'/gallery'} component={Gallery}/>
-                        <Route exact path={'/events'} component={events}/>
+                        <Route exact path={'/committee'} component={Committee}/>
                         <Route exact path={'/contactus'} component={ContactUs}/>
                         <Route exact path={'/register'} component={Register}/>
                         <Route exact path={'/managemembers'} component={ManageUsers}/>
-                        <Route exact path={'/paymentreports'} component={events}/>
-                        <Route exact path={'/addpayment'} component={events}/>
+                        <Route exact path={'/paymentreports'} component={Committee}/>
+                        <Route exact path={'/addpayment'} component={Committee}/>
                     </Switch>
                 </section>
                 <SksFooter.sksfooter/>
