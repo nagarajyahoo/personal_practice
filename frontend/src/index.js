@@ -10,13 +10,15 @@ import LoginReducer from "./model/reducers/LoginReducer";
 import AlbumReducer from "./model/reducers/AlbumReducer";
 import GalleryReducer from "./model/reducers/GoogleGalleryReducer";
 import RegistrationReducer from "./model/reducers/RegistrationReducer";
+import CommitteeReducer from "./model/reducers/CommitteeReducer";
 
 //create reducers
 const reducers = combineReducers({
     login: LoginReducer,
     album: AlbumReducer,
     gallery: GalleryReducer,
-    regReducer: RegistrationReducer
+    regReducer: RegistrationReducer,
+    committee: CommitteeReducer
 });
 
 //create composers

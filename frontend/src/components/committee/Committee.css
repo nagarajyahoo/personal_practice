@@ -9,10 +9,17 @@
 
 .member-photo {
     margin-left: -100%;
+    height: 150px;
+    width: 150px;
 }
 .member-details {
     margin-left: 5%;
+    margin-bottom: 1%;
 }
 .member-profile {
     margin-right: -10%;
+}
+
+.sks-committee-diaplyname {
+    color: #ff821f;
 }
